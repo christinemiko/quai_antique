@@ -9,29 +9,5 @@ html, body {
 
 body{
     font-family: 'Lora', serif;
+    background: white;
 }
-    <!-- HOMEPAGE START -->
-.img1{
-    display: flex;
-    flex-direction:center;
-    justify-content:center;
-    height: 25vw;
-}
-     <!-- HOMEPAGE END -->
-
-    <!-- HISTORY START -->
-
-.img2{
-    display: flex;
-    flex-direction:center;
-    justify-content:center;
-    height: 25vw;
-}
-.img3{
-    display: flex;
-    justify-content:center;
-    height: 50%;
-
-}
-
-

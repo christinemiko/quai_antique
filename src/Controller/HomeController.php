@@ -9,59 +9,64 @@
  class HomeController extends AbstractController
  {
 
-     #[Route('Accueil')]
+     #[Route('accueil')]
      public function Accueil() : Response
      {
          return $this->render("homepage.html.twig");
      }
 
-     #[Route('Histoire')]
+     #[Route('histoire')]
      public function Histoire() : Response
      {
          return $this->render("history.html.twig");
      }
 
-     #[Route('A la Carte')]
+     #[Route('alacarte')]
      public function AlaCarte() : Response
      {
          return $this->render("cardmenu.html.twig");
      }
 
-     #[Route('Menu Déjeuner')]
+     #[Route('menudéjeuner')]
      public function MenuDejeuner() : Response
      {
          return $this->render("lunchmenu.html.twig");
      }
 
-     #[Route('Menu Diner')]
+     #[Route('menudiner')]
      public function MenuDiner() : Response
      {
          return $this->render("dinnermenu.html.twig");
      }
 
-     #[Route('Réservation')]
+     #[Route('reservation')]
      public function Reservation() : Response
      {
          return $this->render("reservation.html.twig");
      }
 
-     #[Route('Infos')]
-     public function Info() : Response
+     #[Route('accescontact')]
+     public function Acces() : Response
      {
-         return $this->render("info.html.twig");
+         return $this->render("acces.html.twig");
      }
 
-     #[Route('Se Connecter')]
+     #[Route('seconnecter')]
      public function Login() : Response
      {
          return $this->render("login.html.twig");
      }
 
-     #[Route('S/Inscrire')]
+     #[Route('sinscrire')]
      public function Subscribe() : Response
      {
          return $this->render("subscribe.html.twig");
      }
 
+     #[Route('oubli')]
+     public function ForgetPassword() : Response
+     {
+         return $this->render("forgetpassword.html.twig");
+     }
 
  }
