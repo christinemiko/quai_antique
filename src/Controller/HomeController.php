@@ -63,10 +63,28 @@
          return $this->render("subscribe.html.twig");
      }
 
-     #[Route('oubli')]
+     #[Route('oubli_motdepasse')]
      public function ForgetPassword() : Response
      {
          return $this->render("forgetpassword.html.twig");
      }
 
+     #[Route('change_motdepasse')]
+     public function ChangePassword() : Response
+     {
+         return $this->render("changepassword.html.twig");
+     }
+
+
+     #[Route('instagram')]
+     public function Instagram() : Response
+     {
+         return $this->redirect("https://www.instagram.com/polpobrasserie/");
+     }
+
+     #[Route('facebook')]
+     public function Facebook() : Response
+     {
+         return $this->redirect("https://www.facebook.com/PolpoBrasserie/?fref=ts");
+     }
  }
