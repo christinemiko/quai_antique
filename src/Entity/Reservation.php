@@ -11,7 +11,7 @@ class Reservation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -20,11 +20,15 @@ class Reservation
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_reservation = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $number_person = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type:"string",length: 255, nullable: true)]
     private ?string $message = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservation')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -55,6 +59,7 @@ class Reservation
         return $this;
     }
 
+
     public function getNumberPerson(): ?int
     {
         return $this->number_person;
@@ -75,6 +80,18 @@ class Reservation
     public function setMessage(?string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

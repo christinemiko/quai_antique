@@ -10,14 +10,19 @@ class Product
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(type:"string",length: 150)]
     private ?string $name_product = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(type:"string",length: 150)]
     private ?string $unit_price = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $Category = null;
+
 
     public function getId(): ?int
     {
@@ -47,4 +52,18 @@ class Product
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->Category;
+    }
+
+    public function setCategory(?Category $Category): self
+    {
+        $this->Category = $Category;
+
+        return $this;
+    }
+
+
 }

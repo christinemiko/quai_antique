@@ -10,34 +10,34 @@ class Menu
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string", length: 255)]
     private ?string $product_name1 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name2 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name3 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name4 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name5 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name6 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name7 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name8 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name9 = null;
 
     public function getId(): ?int

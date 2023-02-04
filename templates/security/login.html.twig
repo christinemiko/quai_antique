@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Seconnecter{% endblock %}
+
+{% block body %}
+    <div class=" text-center">
+        <img src="img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
+        <h1 class="mt-3 text-center text-dark">Connexion</h1>
+
+    </div>
+
+<form class="container-fluid" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous êtez connecté(é) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+
+    <!-- EMAIL  START -->
+    <div class="row justify-content-center mb-3">
+        <div class="col col-md-6 text-dark">
+            <label for="email">Email: </label>
+            <input type="email"  value="{{ last_username }}"  name="email" class="form-control" id="email"
+                   placeholder="Insérez Votre Email" autocomplete="email" required autofocus>
+        </div>
+    </div>
+    <!-- EMAIL  END -->
+
+
+    <!-- PASSWORD  START -->
+    <div class="row justify-content-center mb-3">
+        <div class="col col-md-6 text-dark">
+            <label for="password">Mot de passe: </label>
+            <input type="password" name="password" class="form-control" id="password"
+                   placeholder="Insérez Votre Mot de Passe" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}">
+        </div>
+    </div>
+    <!-- PASSWORD  START -->
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <!-- BUTTON  START -->
+    <div class=" mb-3 mt-5 text-center">
+        <button type="submit" name="login" class=" col btn btn-ml btn-outline-danger mt-2 text-dark">
+            Se connecter
+        </button>
+    </div>
+
+    <p class="text-center mt-4"><a class="text-dark" href={{ path('oubli_motdepasse') }} > J'ai oublié mon Mot de passe.</a></p>
+    <!-- BUTTON  END -->
+
+    <p class="text-center mt-2 text-dark">Je n'ai pas de compte.<a class="text-danger" href={{ path('sinscrire') }} > Je m'inscris.</a></p>
+
+    <!-- LOGIN PAGE END -->
+</form>
+{% endblock %}

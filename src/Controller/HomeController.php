@@ -42,7 +42,7 @@
      #[Route('reservation')]
      public function Reservation() : Response
      {
-         return $this->render("reservation.html.twig");
+        return $this->render("reservation.html.twig");
      }
 
      #[Route('accescontact')]
@@ -51,11 +51,6 @@
          return $this->render("acces.html.twig");
      }
 
-     #[Route('seconnecter')]
-     public function Login() : Response
-     {
-         return $this->render("login.html.twig");
-     }
 
      #[Route('sinscrire')]
      public function Subscribe() : Response
@@ -87,4 +82,11 @@
      {
          return $this->redirect("https://www.facebook.com/PolpoBrasserie/?fref=ts");
      }
+
+     #[Route('moncompte')]
+     public function MyAccount() : Response
+     {
+         return $this->render("moncompte.html.twig");
+     }
  }
+

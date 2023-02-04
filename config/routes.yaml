@@ -30,9 +30,9 @@ accescontact:
     path: /accescontact
     controller: App\Controller\HomeController::accescontact
 
-seconnecter:
-    path: /seconnecter
-    controller: App\Controller\HomeController::seconnecter
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
 
 sinscrire:
     path: /sinscrire
@@ -53,3 +53,7 @@ instagram:
 facebook:
     path: /facebook
     controller: App\Controller\HomeController::facebook
+
+moncompte:
+    path: /moncompte
+    controller: App\Controller\HomeController::moncompte

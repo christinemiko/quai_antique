@@ -10,13 +10,13 @@ class Hour
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $day = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string",length: 255)]
     private ?string $hour = null;
 
     public function getId(): ?int

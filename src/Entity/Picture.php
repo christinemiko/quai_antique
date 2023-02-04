@@ -10,14 +10,19 @@ class Picture
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(type:"string",length: 150)]
     private ?string $name_picture = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type:"string", length: 255)]
     private ?string $link = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $Product = null;
+
 
     public function getId(): ?int
     {
@@ -47,4 +52,18 @@ class Picture
 
         return $this;
     }
+
+    public function getProduct(): ?Product
+    {
+        return $this->Product;
+    }
+
+    public function setProduct(Product $Product): self
+    {
+        $this->Product = $Product;
+
+        return $this;
+    }
+
+
 }
