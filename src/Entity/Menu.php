@@ -40,6 +40,9 @@ class Menu
     #[ORM\Column(type:"string",length: 255)]
     private ?string $product_name9 = null;
 
+    #[ORM\Column(length: 150)]
+    private ?string $name_menu = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +152,18 @@ class Menu
     public function setProductName9(string $product_name9): self
     {
         $this->product_name9 = $product_name9;
+
+        return $this;
+    }
+
+    public function getNameMenu(): ?string
+    {
+        return $this->name_menu;
+    }
+
+    public function setNameMenu(string $name_menu): self
+    {
+        $this->name_menu = $name_menu;
 
         return $this;
     }
