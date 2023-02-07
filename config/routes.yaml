@@ -2,10 +2,6 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
-accueil:
-    path: /accueil
-    controller: App\Controller\HomeController::accueil
-
 histoire:
     path: /histoire
     controller: App\Controller\HomeController::histoire
@@ -34,9 +30,9 @@ login:
     path: /login
     controller: App\Controller\SecurityController::login
 
-sinscrire:
-    path: /sinscrire
-    controller: App\Controller\HomeController::sinscrire
+inscription:
+    path: /inscription
+    controller: App\Controller\RegistrationController::inscription
 
 oubli_motdepasse:
     path: /oubli_motdepasse
@@ -57,3 +53,4 @@ facebook:
 moncompte:
     path: /moncompte
     controller: App\Controller\HomeController::moncompte
+

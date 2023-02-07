@@ -21,7 +21,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('last_name', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nom'])
             ->add('first_name', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Prénom'])
-            ->add('allergie', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies'])
+            ->add('allergie', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'])
             ->add('phone_number', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Télephone'])
             ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Email'])
             ->add('RGPDConsent', CheckboxType::class, [

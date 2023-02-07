@@ -9,7 +9,7 @@
  class HomeController extends AbstractController
  {
 
-     #[Route('accueil')]
+     #[Route('/', 'accueil', methods:['GET'])]
      public function Accueil() : Response
      {
          return $this->render("homepage.html.twig");
@@ -51,12 +51,6 @@
          return $this->render("acces.html.twig");
      }
 
-
-     #[Route('sinscrire')]
-     public function Subscribe() : Response
-     {
-         return $this->render("subscribe.html.twig");
-     }
 
      #[Route('oubli_motdepasse')]
      public function ForgetPassword() : Response

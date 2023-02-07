@@ -14,12 +14,6 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtez connecté(é) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
-        </div>
-    {% endif %}
-
     <!-- EMAIL  START -->
     <div class="row justify-content-center mb-3">
         <div class="col col-md-6 text-dark">
@@ -64,7 +58,7 @@
     <p class="text-center mt-4"><a class="text-dark" href={{ path('oubli_motdepasse') }} > J'ai oublié mon Mot de passe.</a></p>
     <!-- BUTTON  END -->
 
-    <p class="text-center mt-2 text-dark">Je n'ai pas de compte.<a class="text-danger" href={{ path('sinscrire') }} > Je m'inscris.</a></p>
+    <p class="text-center mt-2 text-dark">Je n'ai pas de compte.<a class="text-danger" href={{ path('inscription') }} > Je m'inscris.</a></p>
 
     <!-- LOGIN PAGE END -->
 </form>
