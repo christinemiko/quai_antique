@@ -21,12 +21,6 @@
          return $this->render("history.html.twig");
      }
 
-     #[Route('alacarte')]
-     public function AlaCarte() : Response
-     {
-         return $this->render("cardmenu.html.twig");
-     }
-
      #[Route('menudéjeuner')]
      public function MenuDejeuner() : Response
      {
