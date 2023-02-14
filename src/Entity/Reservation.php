@@ -15,13 +15,13 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $hour_reservation = null;
+    private ?\DateTimeInterface $hourReservation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_reservation = null;
+    private ?\DateTimeInterface $dateReservation = null;
 
     #[ORM\Column(type:"integer")]
-    private ?int $number_person = null;
+    private ?int $numberPerson = null;
 
     #[ORM\Column(type:"string",length: 255, nullable: true)]
     private ?string $message = null;
@@ -37,24 +37,24 @@ class Reservation
 
     public function getHourReservation(): ?\DateTimeInterface
     {
-        return $this->hour_reservation;
+        return $this->hourReservation;
     }
 
-    public function setHourReservation(\DateTimeInterface $hour_reservation): self
+    public function setHourReservation(\DateTimeInterface $hourReservation): self
     {
-        $this->hour_reservation = $hour_reservation;
+        $this->hourReservation = $hourReservation;
 
         return $this;
     }
 
     public function getDateReservation(): ?\DateTimeInterface
     {
-        return $this->date_reservation;
+        return $this->dateReservation;
     }
 
-    public function setDateReservation(\DateTimeInterface $date_reservation): self
+    public function setDateReservation(\DateTimeInterface $dateReservation): self
     {
-        $this->date_reservation = $date_reservation;
+        $this->dateReservation = $dateReservation;
 
         return $this;
     }
@@ -62,12 +62,12 @@ class Reservation
 
     public function getNumberPerson(): ?int
     {
-        return $this->number_person;
+        return $this->numberPerson;
     }
 
-    public function setNumberPerson(int $number_person): self
+    public function setNumberPerson(int $numberPerson): self
     {
-        $this->number_person = $number_person;
+        $this->numberPerson = $numberPerson;
 
         return $this;
     }

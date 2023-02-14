@@ -14,14 +14,14 @@ class Picture
     private ?int $id = null;
 
     #[ORM\Column(type:"string",length: 150)]
-    private ?string $name_picture = null;
+    private ?string $namePicture = null;
 
     #[ORM\Column(type:"string", length: 255)]
     private ?string $link = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Product $Product = null;
+    private ?Product $product = null;
 
 
     public function getId(): ?int
@@ -31,12 +31,12 @@ class Picture
 
     public function getNamePicture(): ?string
     {
-        return $this->name_picture;
+        return $this->namePicture;
     }
 
-    public function setNamePicture(string $name_picture): self
+    public function setNamePicture(string $namePicture): self
     {
-        $this->name_picture = $name_picture;
+        $this->namePicture = $namePicture;
 
         return $this;
     }
@@ -55,12 +55,12 @@ class Picture
 
     public function getProduct(): ?Product
     {
-        return $this->Product;
+        return $this->product;
     }
 
-    public function setProduct(Product $Product): self
+    public function setProduct(Product $product): self
     {
-        $this->Product = $Product;
+        $this->product = $product;
 
         return $this;
     }

@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         /* DONNEES CATEGORY START */
-        $category = new Category ();
+        /*$category = new Category ();
         $category ->setNameCategory('Entrée');
         $manager->persist($category);
         $manager->flush();
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES HOUR START */
 
-        $hour = new Hour ();
+        /*$hour = new Hour ();
         $hour ->setDay('Du Lundi au Samedi');
         $hour ->setHour('De 11h45 à 14h00 et de 19h00 à 22h00');
         $manager->persist($hour);
@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES MENU START */
 
-        $menu = new Menu ();
+        /*$menu = new Menu ();
         $menu ->setProductName1('Tartare de Daurade et dès de mangues');
         $menu ->setProductName2('Oeufs à la truffe');
         $menu ->setProductName3('Tartelette aux poireaux, beaufort d/alpage');
@@ -97,21 +97,24 @@ class AppFixtures extends Fixture
 
         /* DONNEES ENTREE START */
 
-        $product = new Product ();
+       /* $product = new Product ();
         $product ->setNameProduct('Tranches de Saint-Jacques à la truffe noire');
         $product ->setUnitPrice('38€');
+        $product->setCategory($category);
         $manager->persist($product);
         $manager->flush();
 
         $product = new Product ();
         $product ->setNameProduct('Pâté en croute de canard et foie gras de canard');
         $product ->setUnitPrice('26€');
+        $product->setCategory($category);
         $manager->persist($product);
         $manager->flush();
 
         $product = new Product ();
         $product ->setNameProduct('Tartare de daurade, huître Perle Noire');
         $product ->setUnitPrice('31€');
+        $product->setCategory($category);
         $manager->persist($product);
         $manager->flush();
 
@@ -131,7 +134,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES VIANDE START */
 
-        $product = new Product ();
+       /* $product = new Product ();
         $product ->setNameProduct('Gigot d/agneau de nos régions rôti et son gratin dauphinois');
         $product ->setUnitPrice('41€');
         $manager->persist($product);
@@ -165,7 +168,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES POISSON START */
 
-        $product = new Product ();
+        /*$product = new Product ();
         $product ->setNameProduct('Mitonnée de poulpe à la provençale');
         $product ->setUnitPrice('35€');
         $manager->persist($product);
@@ -198,7 +201,7 @@ class AppFixtures extends Fixture
         /* DONNEES POISSON END */
 
         /* DONNEES FROMAGES START */
-        $product = new Product ();
+        /*$product = new Product ();
         $product ->setNameProduct('Plateau de fromages affinés de nos régions');
         $product ->setUnitPrice('18€');
         $manager->persist($product);
@@ -214,7 +217,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES DESSERT START */
 
-        $product = new Product ();
+        /*$product = new Product ();
         $product ->setNameProduct('Soufflé à la châtaigne, sorbet à l/orange, saupoudré de croquants au chocolat');
         $product ->setUnitPrice('18€');
         $manager->persist($product);
@@ -248,7 +251,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES BOISSON START */
 
-        $product = new Product ();
+        /*$product = new Product ();
         $product ->setNameProduct('Eau minérale Evian');
         $product ->setUnitPrice('50cl_ 5€ / 1L_ 7€');
         $manager->persist($product);
@@ -283,7 +286,7 @@ class AppFixtures extends Fixture
 
         /* DONNEES VINS START */
 
-        $product = new Product ();
+        /*$product = new Product ();
         $product ->setNameProduct('Champagne Perrier Jouët');
         $product ->setUnitPrice('12_cl 12€ / 1L_ 60€');
         $manager->persist($product);

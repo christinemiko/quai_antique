@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -14,17 +16,14 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(type:"string",length: 150)]
-    private ?string $name_product = null;
+    private ?string $nameProduct = null;
 
-    #[ORM\Column(type:"string",length: 150)]
-    private ?string $unit_price = null;
+    #[ORM\Column(type:"integer",length: 11)]
+    private ?int $unitPrice = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $category_id = null;
 
 
     public function getId(): ?int
@@ -34,24 +33,24 @@ class Product
 
     public function getNameProduct(): ?string
     {
-        return $this->name_product;
+        return $this->nameProduct;
     }
 
-    public function setNameProduct(string $name_product): self
+    public function setNameProduct(string $nameProduct): self
     {
-        $this->name_product = $name_product;
+        $this->nameProduct = $nameProduct;
 
         return $this;
     }
 
-    public function getUnitPrice(): ?string
+    public function getUnitPrice(): ?int
     {
-        return $this->unit_price;
+        return $this->unitPrice;
     }
 
-    public function setUnitPrice(string $unit_price): self
+    public function setUnitPrice(int $unitPrice): self
     {
-        $this->unit_price = $unit_price;
+        $this->unitPrice = $unitPrice;
 
         return $this;
     }
@@ -68,17 +67,8 @@ class Product
         return $this;
     }
 
-    public function getCategoryId(): ?int
-    {
-        return $this->category_id;
-    }
 
-    public function setCategoryId(?int $category_id): self
-    {
-        $this->category_id = $category_id;
 
-        return $this;
-    }
 
 
 }

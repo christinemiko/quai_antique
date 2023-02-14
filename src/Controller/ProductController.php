@@ -12,10 +12,11 @@ class ProductController extends AbstractController
     #[Route('/alacarte', name: 'app_product')]
     public function index(ProductRepository $repository): Response
     {
-        $products = $repository->findAll();
+        $product = $repository->findBy(['id' =>'2,3,4,5,6'], );
+
 
         return $this->render('cardmenu.html.twig', [
-            'products' => $products
+            'product' => $product
         ]);
     }
 }

@@ -10,11 +10,11 @@ class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type:"integer")]
+    #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type:"string",length: 150)]
-    private ?string $name_category = null;
+    #[ORM\Column]
+    private ?string $nameCategory = null;
 
     public function getId(): ?int
     {
@@ -23,12 +23,12 @@ class Category
 
     public function getNameCategory(): ?string
     {
-        return $this->name_category;
+        return $this->nameCategory;
     }
 
-    public function setNameCategory(string $name_category): self
+    public function setNameCategory(string $nameCategory): self
     {
-        $this->name_category = $name_category;
+        $this->nameCategory = $nameCategory;
 
         return $this;
     }

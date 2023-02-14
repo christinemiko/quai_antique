@@ -32,16 +32,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type:"string",length: 150)]
-    private ?string $last_name = null;
+    private ?string $lastName = null;
 
     #[ORM\Column(type:"string",length: 150)]
-    private ?string $first_name = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(type:"string",length: 255)]
     private ?string $allergie = null;
 
     #[ORM\Column(type:"string",length: 150)]
-    private ?string $phone_number = null;
+    private ?string $phoneNumber = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class)]
     private Collection $reservation;
@@ -84,15 +84,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_CLIENT, ROLE_USER';
 
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): array
     {
-
         $this->roles = $roles;
 
         return array_unique($roles);
@@ -124,24 +121,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -160,12 +157,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(string $phone_number): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
