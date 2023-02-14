@@ -25,6 +25,14 @@ class Product
     #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductMenu::class)]
+    private Collection $productMenus;
+
+    public function __construct()
+    {
+        $this->productMenus = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -63,6 +71,36 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductMenu>
+     */
+    public function getProductMenus(): Collection
+    {
+        return $this->productMenus;
+    }
+
+    public function addProductMenu(ProductMenu $productMenu): self
+    {
+        if (!$this->productMenus->contains($productMenu)) {
+            $this->productMenus->add($productMenu);
+            $productMenu->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductMenu(ProductMenu $productMenu): self
+    {
+        if ($this->productMenus->removeElement($productMenu)) {
+            // set the owning side to null (unless already changed)
+            if ($productMenu->getProduct() === $this) {
+                $productMenu->setProduct(null);
+            }
+        }
 
         return $this;
     }
