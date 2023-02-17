@@ -17,7 +17,7 @@ class Hour
     private ?string $day = null;
 
     #[ORM\Column]
-    private ?string $hour = null;
+    private ?string $hourtime = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class Hour
         return $this;
     }
 
-    public function getHour(): ?string
+    public function getHourtime(): ?string
     {
-        return $this->hour;
+        return $this->hourtime;
     }
 
-    public function setHour(string $hour): self
+    public function setHour(string $hourtime): self
     {
-        $this->hour = $hour;
+        $this->hourtime = $hourtime;
 
         return $this;
     }

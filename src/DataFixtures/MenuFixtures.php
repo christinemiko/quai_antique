@@ -16,6 +16,7 @@ class MenuFixtures extends Fixture
         $menu ->setNameMenu('Menu Déjeuner_Aurore');
         $menu ->setPriceMenu(59);
         $manager->persist($menu);
+        $this->addReference('menuDejeuner', $menu);
 
 
         $menu = new Menu ();
@@ -23,6 +24,8 @@ class MenuFixtures extends Fixture
         $menu ->setNameMenu('Menu Dîner_Crepuscule');
         $menu ->setPriceMenu(79);
         $manager->persist($menu);
+        $this->addReference('menuDiner', $menu);
+
         $manager->flush();
 
         /* DONNEES MENU END */

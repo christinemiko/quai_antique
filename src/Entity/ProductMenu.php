@@ -15,14 +15,14 @@ class ProductMenu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $newProductMenu = null;
-
     #[ORM\ManyToOne(inversedBy: 'productMenus')]
     private ?Menu $menu = null;
 
     #[ORM\ManyToOne(inversedBy: 'productMenus')]
     private ?Product $product = null;
+
+    #[ORM\ManyToOne(inversedBy: 'productMenus')]
+    private ?Category $category = null;
 
 
 
@@ -31,17 +31,6 @@ class ProductMenu
         return $this->id;
     }
 
-    public function getNewProductMenu(): ?string
-    {
-        return $this->newProductMenu;
-    }
-
-    public function setNewProductMenu(string $newProductMenu): self
-    {
-        $this->newProductMenu = $newProductMenu;
-
-        return $this;
-    }
 
     public function getMenu(): ?Menu
     {
@@ -63,6 +52,18 @@ class ProductMenu
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

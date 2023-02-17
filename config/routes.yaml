@@ -8,15 +8,15 @@ histoire:
 
 alacarte:
     path: /alacarte
-    controller: App\Controller\HomeController::alacarte
+    controller: App\Controller\ProductController::alacarte
 
 menudéjeuner:
     path: /menudéjeuner
-    controller: App\Controller\HomeController::menudéjeuner
+    controller: App\Controller\LunchMenuController::menudéjeuner
 
 menudiner:
     path: /menudiner
-    controller: App\Controller\HomeController::menudiner
+    controller: App\Controller\DinnerMenuController::menudiner
 
 reservation:
     path: /reservation

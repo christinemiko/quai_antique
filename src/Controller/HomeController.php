@@ -1,6 +1,7 @@
 <?php
  namespace App\Controller;
 
+ use App\Repository\HourRepository;
  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  use Symfony\Component\HttpFoundation\Response;
  use Symfony\Component\Routing\Annotation\Route;
@@ -9,53 +10,61 @@
  class HomeController extends AbstractController
  {
 
-     #[Route('/', 'accueil', methods:['GET'])]
-     public function Accueil() : Response
+     #[Route('/', 'accueil')]
+     public function Accueil(HourRepository $repository) : Response
      {
-         return $this->render("homepage.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render( 'homepage.html.twig', [
+             'hourFixtures' => $hourFixtures
+         ]);
+
      }
 
      #[Route('histoire')]
-     public function Histoire() : Response
+     public function Histoire(HourRepository $repository) : Response
      {
-         return $this->render("history.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render('history.html.twig', [
+             'hourFixtures' => $hourFixtures
+         ]);
      }
 
-     #[Route('menudéjeuner')]
-     public function MenuDejeuner() : Response
-     {
-         return $this->render("lunchmenu.html.twig");
-     }
-
-     #[Route('menudiner')]
-     public function MenuDiner() : Response
-     {
-         return $this->render("dinnermenu.html.twig");
-     }
 
      #[Route('reservation')]
-     public function Reservation() : Response
+     public function Reservation(HourRepository $repository) : Response
      {
-        return $this->render("reservation.html.twig");
+         $hourFixtures = $repository->find(33);
+        return $this->render('reservation.html.twig',[
+            'hourFixtures' => $hourFixtures
+        ]);
      }
 
      #[Route('accescontact')]
-     public function Acces() : Response
+     public function Acces(HourRepository $repository) : Response
      {
-         return $this->render("acces.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render('acces.html.twig',[
+         'hourFixtures' => $hourFixtures
+             ]);
      }
 
 
      #[Route('oubli_motdepasse')]
-     public function ForgetPassword() : Response
+     public function ForgetPassword(HourRepository $repository) : Response
      {
-         return $this->render("forgetpassword.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render('forgetpassword.html.twig',[
+             'hourFixtures' => $hourFixtures
+         ]);
      }
 
      #[Route('change_motdepasse')]
-     public function ChangePassword() : Response
+     public function ChangePassword(HourRepository $repository) : Response
      {
-         return $this->render("changepassword.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render('changepassword.html.twig', [
+             'hourFixtures' => $hourFixtures
+         ]);
      }
 
 
@@ -72,9 +81,12 @@
      }
 
      #[Route('moncompte')]
-     public function MyAccount() : Response
+     public function MyAccount(HourRepository $repository) : Response
      {
-         return $this->render("moncompte.html.twig");
+         $hourFixtures = $repository->find(33);
+         return $this->render('moncompte.html.twig',[
+         'hourFixtures' => $hourFixtures
+             ]);
      }
  }
 

@@ -39,21 +39,27 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+ //   /**
+ //    * @return Product[] Returns an array of Product objects
+  //  */
 
+ //    public function findByCategoryProduct(): array
+ //   {
+//       return $this->createQueryBuilder('p')
+ //           ->andWhere('p.category = :category')
+  //          ->setParameter('category', '224')
+  //          ->getQuery()
+  //         ->getResult();
+ // }
+
+  //  public function findByCategoryViande(): array
+ //   {
+  //      return $this->createQueryBuilder('p')
+ //           ->andWhere('p.category = :category')
+  //          ->setParameter('category', '225')
+ //           ->getQuery()
+  //          ->getResult();
+  //  }
 //    public function findOneBySomeField($value): ?Product
 //    {
 //        return $this->createQueryBuilder('p')

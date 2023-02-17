@@ -21,12 +21,16 @@ class Product
     #[ORM\Column(type:"integer",length: 11)]
     private ?int $unitPrice = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Category $category = null;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductMenu::class)]
     private Collection $productMenus;
+
+    #[ORM\Column(length: 150)]
+    private ?string $destination = null;
+
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Category $category = null;
+
 
     public function __construct()
     {
@@ -63,17 +67,7 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
 
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, ProductMenu>
@@ -104,6 +98,32 @@ class Product
 
         return $this;
     }
+
+    public function getDestination(): ?string
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(string $destination): self
+    {
+        $this->destination = $destination;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+
 
 
 
