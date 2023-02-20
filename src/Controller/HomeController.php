@@ -80,13 +80,6 @@
          return $this->redirect("https://www.facebook.com/PolpoBrasserie/?fref=ts");
      }
 
-     #[Route('moncompte')]
-     public function MyAccount(HourRepository $repository) : Response
-     {
-         $hourFixtures = $repository->find(33);
-         return $this->render('moncompte.html.twig',[
-         'hourFixtures' => $hourFixtures
-             ]);
-     }
+
  }
 

@@ -4,14 +4,54 @@
 
 
 {% block body %}
-<div class=" text-center">
+<div class=" container-fluid text-center ">
     <img src="img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
     <h1 class="mt-3 text-center text-dark">Mon Compte</h1>
     {% if app.user %}
-        <div class="mb-3">
-            Vous êtez connecté(é) comme {{ app.user.userIdentifier }}
+          <div class=" text-center block">
+            <!-- LASTNAME  START -->
+            <div class="row justify-content-center mb-4 mt-5">
+                <div class="col col-md-6 text-light">
+                    <label for="lastName">Nom: {{ app.user.lastName }}</label>
+                </div>
+            </div>
+            <!-- LASTNAME  END -->
+
+            <!-- FIRSTNAME  START -->
+          <div class="row justify-content-center mb-4">
+            <div class="col col-md-6 text-light">
+                <label for="firstName">Prénom: {{ app.user.firstName }}</label>
+            </div>
+          </div>
+          <!-- FIRSTNAME  END -->
+
+          <!-- ALLERGIES  START -->
+        <div class="row justify-content-center mb-4">
+            <div class="col col-md-6 text-light">
+                <label for="allergie">Allergies: {{ app.user.allergie }}</label>
+            </div>
+        </div>
+        <!-- ALLERGIES  END -->
+
+        <!-- EMAIL  START -->
+        <div class="row justify-content-center mb-4">
+            <div class="col col-md-6 text-light">
+                <label for="allergie">Email: {{ app.user.userIdentifier }}</label>
+            </div>
+        </div>
+        <!-- EMAIL  END -->
+
+        <!-- PHONENUMBER START -->
+        <div class="row justify-content-center mb-4">
+            <div class="col col-md-6 text-light">
+                <label for="allergie">Téléphone: {{ app.user.phoneNumber }}</label>
+            </div>
+        </div>
+        <!--  PHONENUMBER   END -->
+
+        </div>
         </div>
     {% endif %}
 
-</div>
+
 {% endblock %}

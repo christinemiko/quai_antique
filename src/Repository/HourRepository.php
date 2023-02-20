@@ -54,13 +54,13 @@ class HourRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Hour
+ //   public function findOneById($value): ?Hour
 //    {
-//        return $this->createQueryBuilder('h')
-//            ->andWhere('h.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+ //       return $this->createQueryBuilder('h')
+  //         ->andWhere('h.id = :id')
+ //           ->setParameter('val', $value)
+  //          ->getQuery()
+ //          ->getOneResult()
+ //       ;
+ //  }
 }

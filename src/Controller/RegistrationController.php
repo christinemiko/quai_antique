@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\HourRepository;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppLoginAuthenticator;
@@ -17,8 +18,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/inscription', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
+        $hourFixtures = $hourRepository->find(33);
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -47,6 +49,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
+            'hourFixtures' => $hourFixtures,
             'registrationForm' => $form->createView(),
         ]);
     }

@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions d\'inscriptions.',
                     ]),
                 ], 'label' => 'Je confirme mon inscription par l\'enregistrement de ses données sur le site Quai Antique'
             ])

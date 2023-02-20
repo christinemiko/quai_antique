@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/alacarte', name: 'app_product')]
-    public function index(ProductRepository $repository): Response
+    public function index(ProductRepository $repository, HourRepository $hourRepository): Response
     {
-
+        $hourFixtures = $hourRepository->find(33);
         $productsFixtures = $repository->findBy(['category' => '238']);
         $productsFixtures2 = $repository->findBy(['category' => '239']);
         $productsFixtures3 = $repository->findBy(['category' => '240']);
@@ -23,6 +23,7 @@ class ProductController extends AbstractController
         $productsFixtures7 = $repository->findBy(['category' => '244']);
 
         return $this->render('cardmenu.html.twig', [
+            'hourFixtures' => $hourFixtures,
             'productsFixtures' => $productsFixtures,
             'productsFixtures2' => $productsFixtures2,
             'productsFixtures3' => $productsFixtures3,
