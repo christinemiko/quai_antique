@@ -6,7 +6,7 @@
 {% block body %}
 <div class=" container-fluid text-center ">
     <img src="img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
-    <h1 class="mt-3 text-center text-dark">Mon Compte</h1>
+    <h1 class="mt-3 text-center text-dark">Modification Compte</h1>
     {% if app.user %}
           <div class=" text-center block">
             <!-- LASTNAME  START -->
@@ -52,16 +52,12 @@
           </div>
               <!-- BUTTON UPDATE  START -->
               <div class=" mb-3 mt-5 text-center">
-                  <a  class=" col btn btn-ml btn-outline-danger mt-2 text-dark" href={{ path('updatemoncompte') }}>
-                      Modifier
+                  <a  class=" col btn btn-ml btn-outline-danger mt-2 text-dark" href={{ path('oubli_motdepasse') }}>
+                      Enregistrer
                   </a>
               <!-- BUTTON UPDATE  END -->
 
-              <!-- BUTTON DELETE  START -->
-             <a  class=" col btn btn-ml btn-outline-danger mt-2 text-dark" href={{ path('deletemoncompte') }}>
-                  Supprimer
-              </a>
-             <!-- BUTTON DELETE  END -->
+
 
               </div>
 

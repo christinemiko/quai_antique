@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\HourRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +23,23 @@ class UserController extends AbstractController
     {
         $hourFixtures = $repository->find(33);
         return $this->render('moncompte.html.twig',[
+            'hourFixtures' => $hourFixtures
+        ]);
+    }
+    #[Route('updatemoncompte', name: 'app_updatemoncompte' )]
+    public function edit(UserRepository $userRepository,HourRepository $hourRepository) : Response
+    {
+        $hourFixtures =  $hourRepository->find(33);
+        return $this->render('updatemoncompte.html.twig', [
+            'hourFixtures' => $hourFixtures
+        ]);
+    }
+
+    #[Route('deletemoncompte', name: 'app_deletemoncompte' )]
+    public function remove(UserRepository $userRepository,HourRepository $hourRepository) : Response
+    {
+        $hourFixtures =  $hourRepository->find(33);
+        return $this->render('deletemoncompte.html.twig', [
             'hourFixtures' => $hourFixtures
         ]);
     }

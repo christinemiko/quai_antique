@@ -52,5 +52,15 @@ facebook:
 
 moncompte:
     path: /moncompte
-    controller: App\Controller\HomeController::moncompte
+    controller: App\Controller\UserController::moncompte
+
+
+updatemoncompte:
+    path: /updatemoncompte
+    controller: App\Controller\UserController::updatemoncompte
+
+
+deletemoncompte:
+    path: /deletemoncompte
+    controller: App\Controller\UserController::deletemoncompte
 
