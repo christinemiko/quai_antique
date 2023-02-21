@@ -26,14 +26,7 @@ class UserController extends AbstractController
             'hourFixtures' => $hourFixtures
         ]);
     }
-    #[Route('updatemoncompte', name: 'app_updatemoncompte' )]
-    public function edit(UserRepository $userRepository,HourRepository $hourRepository) : Response
-    {
-        $hourFixtures =  $hourRepository->find(33);
-        return $this->render('updatemoncompte.html.twig', [
-            'hourFixtures' => $hourFixtures
-        ]);
-    }
+
 
     #[Route('deletemoncompte', name: 'app_deletemoncompte' )]
     public function remove(UserRepository $userRepository,HourRepository $hourRepository) : Response
