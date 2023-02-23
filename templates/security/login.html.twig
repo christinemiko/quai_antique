@@ -9,7 +9,7 @@
 
     </div>
 
-<form class="container-fluid" method="post">
+  <form class="container-fluid" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -55,7 +55,7 @@
         </button>
     </div>
 
-    <p class="text-center mt-4"><a class="text-dark" href={{ path('oubli_motdepasse') }} > J'ai oublié mon Mot de passe.</a></p>
+    <p class="text-center mt-4"><a class="text-dark" href={{ path('app_forgot_password_request') }} > J'ai oublié mon Mot de passe.</a></p>
     <!-- BUTTON  END -->
 
     <p class="text-center mt-2 text-dark">Je n'ai pas de compte.<a class="text-danger" href={{ path('inscription') }} > Je m'inscris.</a></p>

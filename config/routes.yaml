@@ -34,9 +34,6 @@ inscription:
     path: /inscription
     controller: App\Controller\RegistrationController::inscription
 
-oubli_motdepasse:
-    path: /oubli_motdepasse
-    controller: App\Controller\HomeController::oubli_motdepasse
 
 change_motdepasse:
     path: /change_motdepasse
