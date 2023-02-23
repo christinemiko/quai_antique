@@ -7,6 +7,7 @@
 <div class=" container-fluid text-center ">
     <img src="img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
     <h1 class="mt-3 text-center text-dark">Suppression Compte</h1>
+    <p class="mt-5 text-danger">Attention, pour supprimer définitivement votre compte, cliquez sur le bouton "Supprimer".</p>
     {% if app.user %}
           <div class=" text-center block">
             <!-- LASTNAME  START -->
@@ -52,7 +53,7 @@
           </div>
 
               <!-- BUTTON DELETE  START -->
-             <a  class=" col btn btn-ml btn-outline-danger mt-2 text-dark" href={{ path('oubli_motdepasse') }}>
+             <a  href="{{ path('deletemoncompte', { 'id': app.user.id }) }}" class= " col btn btn-ml btn-outline-danger mt-2 text-dark">
                   Supprimer
               </a>
              <!-- BUTTON DELETE  END -->

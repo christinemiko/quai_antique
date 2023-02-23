@@ -60,8 +60,12 @@ edituser:
     controller: App\Controller\EditUserController::edituser
 
 
-deletemoncompte:
-    path: /deletemoncompte
-    controller: App\Controller\UserController::deletemoncompte
+confirmdeletemoncompte:
+    path: /confirmdeletemoncompte
+    controller: App\Controller\UserController::confirmdeletemoncompte
 
+
+deletemoncompte:
+    path: /deletemoncompte/{id}
+    controller: App\Controller\UserController::deletemoncompte
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Modification{% endblock %}
 
 {% block body %}
 
@@ -19,15 +19,12 @@
                     {{ form_start(edituserForm) }}
                     <fieldset>
 
-                        {{ form_row(edituserForm.last_name)  }}
+                        {{ form_row(edituserForm.last_name) }}
                         {{ form_row(edituserForm.first_name) }}
                         {{ form_row(edituserForm.allergie) }}
                         {{ form_row(edituserForm.phone_number) }}
                         {{ form_row(edituserForm.email) }}
                     </fieldset>
-
-                    {{ form_row(edituserForm.plainPassword) }}
-                    {{ form_row(edituserForm.RGPDConsent) }}
 
                     <div class="text-center mb-3">
                         <button type="submit" class="btn btn-ml btn-outline-danger mt-5 text-dark">Enregistrer</button>

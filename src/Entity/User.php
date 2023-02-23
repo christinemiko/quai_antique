@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Cet email existe déjà. Si vous avez oublié votre mot de passe, cliquez sur le lien ci-dessous.')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User extends \Symfony\Component\Form\FormView implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

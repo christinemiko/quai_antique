@@ -24,31 +24,7 @@ class EditUserFormType extends AbstractType
             ->add('allergie', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'])
             ->add('phone_number', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Télephone'])
             ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Email'])
-            ->add('RGPDConsent', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter les conditions d\'inscriptions.',
-                    ]),
-                ], 'label' => 'Je confirme mon inscription par l\'enregistrement de ses données sur le site Quai Antique'
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez insérer votre Mot de Passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre Mot de Passe doit contenir au minimum {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ], 'label' => 'Mot de Passe'
-            ])
+
         ;
     }
 

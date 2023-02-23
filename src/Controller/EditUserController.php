@@ -19,27 +19,19 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class EditUserController extends AbstractController
 {
     #[Route('/edituser', name: 'app_edituser')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository, UserRepository $userRepository): Response
-    {
+    public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository, UserRepository $userRepository): Response
+     {
         $hourFixtures = $hourRepository->find(33);
-        $user = new User();
+
+        $user = $this->getUser();
+
         $form = $this->createForm(EditUserFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            $user->setRoles(['ROLE_CLIENT']);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
+           $entityManager->persist($user);
+           $entityManager->flush();
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
