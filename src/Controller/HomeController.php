@@ -51,6 +51,13 @@
          return $this->redirect("https://www.facebook.com/PolpoBrasserie/?fref=ts");
      }
 
-
+     #[Route('askreservation')]
+     public function AskReservation(HourRepository $repository) : Response
+     {
+         $hourFixtures = $repository->find(33);
+         return $this->render('askreservation.html.twig',[
+             'hourFixtures' => $hourFixtures
+         ]);
+     }
  }
 

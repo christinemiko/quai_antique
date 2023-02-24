@@ -1,0 +1,36 @@
+ {% extends "base.html.twig" %}
+
+ {% block body %}
+     <!-- ACCES / CONTACT PAGE START -->
+     <div class="container-fluid">
+
+           <div class="row justify-content-center mb-3 p-3 block">
+
+              <!-- LOGO QUAI ANTIQUE START -->
+              <div class=" col-md-6">
+                  <img src="img/Logo ok.jpg" alt="Chef" class="img-fluid" >
+               </div>
+              <!-- LOGO QUAI ANTIQUE END -->
+
+              <div class="col align-self-center col-sm-4 mt-2  text-center text-light">
+                  <h2><u>Réservation</u></h2>
+
+                   <!-- RESERVATION ASK START -->
+                  <section>
+
+                        <p class="mt-5">Pour une réservation en ligne, Veuillez vous connecter</p>
+                          <a class="text-primary " href={{ path('login') }} > Se Connecter.</a>
+                        <p class="mt-4">Vous n'avez pas de compte.</p>
+                      <a class="text-danger" href={{ path('inscription') }} > Inscrivez vous.</a>
+                        <p class="mt-4" >Pour une réservation par téléphone,</p>
+                        <a href="tel:+334 50 51 08 40" class="text-light"> Appeler</a>
+                      <div class=" text-center mt-4"><a class=" text-light">Téléphone: 04 50 51 08 40 </a>
+
+                  </section>
+                  <!-- RESERVATION ASK END -->
+
+              </div>
+           </div>
+     </div>
+
+ {% endblock %}

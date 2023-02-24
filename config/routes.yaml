@@ -66,3 +66,7 @@ deletemoncompte:
     path: /deletemoncompte/{id}
     controller: App\Controller\UserController::deletemoncompte
 
+askreservation:
+    path: /askreservation
+    controller: App\Controller\HomeController::askreservation
+

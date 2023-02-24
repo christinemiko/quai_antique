@@ -19,14 +19,23 @@ class ReservationController extends AbstractController
     public function index(Request $request,UserAuthenticatorInterface $userAuthenticator,EntityManagerInterface $entityManager,AppLoginAuthenticator $authenticator, HourRepository $repository): Response
     {
         $hourFixtures = $repository->find(33);
-        $user = $this->getUser();
 
         $reservation = new Reservation();
+
+        $user = $this->getUser();
+        if (!$user){
+           return $this->redirectToRoute('askreservation');
+        }
+
+        $reservation->setUser($this->getUser());
+
+
         $form = $this->createForm(ReservationFormType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $reservation = $form->getData();
             $entityManager->persist($reservation);
             $entityManager->flush();
             // do anything else you need here, like send an email

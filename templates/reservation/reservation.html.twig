@@ -1,23 +1,36 @@
  {% extends "base.html.twig" %}
 
+ {% block title %}Reservation{% endblock %}
+
  {% block body %}
+
      <!-- RESERVATION PAGE START -->
      <main class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
 
          <div class=" block text-center">
-             <img src="../../public/img/Logo%20ok.jpg" class="img-fluid" alt="Logo Quai Antique">
+             <img src="img/logo ok.jpg" class="img-fluid" alt="Logo Quai Antique">
              <h1 class="mt-3 text-center text-light">Réservation</h1>
          </div>
-         {{ form_start(reservationForm) }}
-         {{ form_row(reservationForm.date_reservation) }}
-         {{ form_row(reservationForm.hour_reservation) }}
-         {{ form_row(reservationForm.number_person) }}
-         {{ form_row(reservationForm.message) }}
-
-         {{ form_end(reservationForm) }}
 
 
+         <section class="container">
+             <div class="row">
+                 <div class="col mt-5">
+                   {{ form_start(reservationForm) }}
+                     <fieldset>
+                          {{ form_row(reservationForm.dateReservation) }}
+                          {{ form_row(reservationForm.hourReservation) }}
+                          {{ form_row(reservationForm.numberPerson) }}
+                          {{ form_row(reservationForm.message) }}
+                     </fieldset>
 
+                     <div class="text-center mb-3">
+                         <button type="submit" class="btn btn-ml btn-outline-danger mt-5 text-dark">Valider</button>
+                   {{ form_end(reservationForm) }}
+                     </div>
+                 </div>
+             </div>
+         </section>
 
      </main>
      <!-- RESERVATION PAGE END -->
