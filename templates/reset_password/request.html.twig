@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Reinitialisation Mot de Passe{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('reset_password_error') %}
@@ -13,10 +13,18 @@
 
      <section class="container-fluid">
 
-        <div class="row justify-content-center mb-3">
-             <div class="col text-dark text-center mt-5">
+        <div class="row mt-5">
+             <div class="col">
+
                   {{ form_start(requestForm) }}
+                 <div class="row justify-content-center mb-3">
+                     <div class="col col-md-6 text-dark">
+                 <fieldset>
                   {{ form_row(requestForm.email) }}
+                 </fieldset>
+
+                     </div>
+                 </div>
              </div>
          </div>
 
