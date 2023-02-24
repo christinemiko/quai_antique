@@ -48,26 +48,6 @@
              ]);
      }
 
-
-     #[Route('oubli_motdepasse')]
-     public function ForgetPassword(HourRepository $repository) : Response
-     {
-         $hourFixtures = $repository->find(33);
-         return $this->render('forgetpassword.html.twig',[
-             'hourFixtures' => $hourFixtures
-         ]);
-     }
-
-     #[Route('change_motdepasse')]
-     public function ChangePassword(HourRepository $repository) : Response
-     {
-         $hourFixtures = $repository->find(33);
-         return $this->render('changepassword.html.twig', [
-             'hourFixtures' => $hourFixtures
-         ]);
-     }
-
-
      #[Route('instagram')]
      public function Instagram() : Response
      {
