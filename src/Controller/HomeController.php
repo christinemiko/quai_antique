@@ -30,15 +30,6 @@
      }
 
 
-     #[Route('reservation')]
-     public function Reservation(HourRepository $repository) : Response
-     {
-         $hourFixtures = $repository->find(33);
-        return $this->render('reservation.html.twig',[
-            'hourFixtures' => $hourFixtures
-        ]);
-     }
-
      #[Route('accescontact')]
      public function Acces(HourRepository $repository) : Response
      {

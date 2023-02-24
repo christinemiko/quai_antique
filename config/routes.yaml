@@ -20,7 +20,7 @@ menudiner:
 
 reservation:
     path: /reservation
-    controller: App\Controller\HomeController::reservation
+    controller: App\Controller\ReservationController::reservation
 
 accescontact:
     path: /accescontact
@@ -35,9 +35,9 @@ inscription:
     controller: App\Controller\RegistrationController::inscription
 
 
-change_motdepasse:
-    path: /change_motdepasse
-    controller: App\Controller\HomeController::change_motdepasse
+reset-password:
+    path: /reset-password
+    controller: App\Controller\ResetPasswordController::reset-password
 
 instagram:
     path: /instagram
