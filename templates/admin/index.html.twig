@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Accueil{% endblock %}
+{% block title %}Administration Accueil{% endblock %}
 
 {% block body %}
 
     <!-- ADMIN HOMEPAGE START -->
 
     <div class=" block text-center">
-        <img src="img/accueil.jpg" class="img-fluid" alt="Accueil">
-
+        <img src="img/Logo ok.jpg" class="img-fluid" alt="Accueil">
+        <h1 class="mt-3 text-center text-light">Administration</h1>
     </div>
 
   <section>
@@ -19,9 +19,9 @@
 
               <!-- LA CARTE CARD START -->
               <div class="card mt-4 mb-4 text-center" style="width: 18rem;">
-                  <a href="{{ path('cardproducts') }}"><img src="img/logolacarte.png" class="card-img-top" alt="Logo La Carte"></a>
+                  <a href="{{ path('products') }}"><img src="img/logolacarte.png" class="card-img-top" alt="Logo La Carte"></a>
                   <div class="card-body">
-                      <a href="{{ path('cardproducts') }}" class="text-dark">
+                      <a href="{{ path('products') }}" class="text-dark">
                           <p class="card-text text-center ">La Carte</p>
                       </a>
                   </div>
@@ -52,9 +52,9 @@
 
               <!-- CLIENTS CARD START -->
               <div class="card mt-4 mb-4 text-center" style="width: 18rem;">
-                  <a href="{{ path('clients') }}"><img src="img/logoclient.png" class="card-img-top" alt="Logo Client"></a>
+                  <a href="{{ path('users') }}"><img src="img/logoclient.png" class="card-img-top" alt="Logo Client"></a>
                   <div class="card-body">
-                      <a href="{{ path('clients') }}" class="text-dark">
+                      <a href="{{ path('users') }}" class="text-dark">
                           <p class="card-text text-center ">Les Clients</p>
                       </a>
                   </div>
@@ -74,9 +74,9 @@
 
               <!-- ADMIN CARD START -->
               <div class="card mt-4 mb-4 text-center" style="width: 18rem;">
-                  <a href="{{ path('admins') }}"><img src="img/logoadmin.png" class="card-img-top" alt="Logo Les Administrateurs"></a>
+                  <a href="{{ path('administrators') }}"><img src="img/logoadmin.png" class="card-img-top" alt="Logo Les Administrateurs"></a>
                   <div class="card-body">
-                      <a href="{{ path('admins') }}" class="text-dark">
+                      <a href="{{ path('administrators') }}" class="text-dark">
                           <p class="card-text text-center ">Les Administrateurs</p>
                       </a>
                   </div>

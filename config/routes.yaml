@@ -70,35 +70,39 @@ askreservation:
     path: /askreservation
     controller: App\Controller\HomeController::askreservation
 
-cardproducts:
-    path: /cardproducts
-    controller: App\Controller\AdminController::cardproducts
+products:
+    path: /admin/products
+    controller: App\Controller\ProductsController::products
 
 menus:
-    path: /menus
-    controller: App\Controller\AdminController::menus
+    path: /admin/menus
+    controller: App\Controller\MenusController::menus
 
 reservations:
-    path: /reservations
-    controller: App\Controller\AdminController::reservations
+    path:  /admin/reservations
+    controller: App\Controller\ReservationsController::reservations
 
-clients:
-    path: /clients
-    controller: App\Controller\AdminController::clients
+users:
+    path: /admin/users
+    controller: App\Controller\UsersController::users
 
 pictures:
-    path: /pictures
-    controller: App\Controller\AdminController::pictures
+    path: /admin/pictures
+    controller: App\Controller\PicturesController::pictures
 
-admins:
-    path: /admins
-    controller: App\Controller\AdminController::admins
+administrators:
+    path: /admin/administrators
+    controller: App\Controller\AdminController::administrators
 
 categories:
-    path: /categories
-    controller: App\Controller\AdminController::categories
+    path: /admin/categories
+    controller: App\Controller\CategoriesController::categories
 
 hours:
-    path: /hours
-    controller: App\Controller\AdminController::hours
+    path: /admin/hours
+    controller: App\Controller\HoursController::hours
+
+admin:
+    path: /admin
+    controller: App\Controller\AdminController::admin
 
