@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\HourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
