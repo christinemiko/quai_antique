@@ -26,17 +26,17 @@
     <div class="container-fluid">
         <div class="table-responsive">
 
-            <table class="table table-light table-striped table-bordered mt-5">
+            <table class="table table-light table-striped table-bordered table-hover mt-5">
                 <thead >
                 <tr>
-                    <th>ID</th>
-                    <th>Date de réservation</th>
-                    <th>Heure de réservation</th>
-                    <th>Nombre de Personnes</th>
-                    <th>Allergies/Message</th>
-                    <th>Client</th>
-                    <th>N°Téléphone</th>
-                    <th>Email</th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Date de réservation</th>
+                    <th class="text-center">Heure de réservation</th>
+                    <th class="text-center">Nombre de Personnes</th>
+                    <th class="text-center">Allergies/Message</th>
+                    <th class="text-center">Client</th>
+                    <th class="text-center">N°Téléphone</th>
+                    <th class="text-center">Email</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -44,17 +44,17 @@
 
                 {% for reservations in reservations %}
                 <tr>
-                    <td>{{ reservations.id }}</td>
-                    <td>{{ reservations.dateReservation|date("d/m/yy") }}</td>
-                    <td>{{ reservations.hourReservation|date('H:i:s') }}</td>
-                    <td>{{ reservations.numberPerson }}</td>
-                    <td>{{ reservations.message }}</td>
-                    <td>{{ reservations.user.lastName }}{{ reservations.user.firstName }}</td>
-                    <td>{{ reservations.user.phoneNumber }}</td>
-                    <td>{{ reservations.user.email }}</td>
+                    <td class="text-center">{{ reservations.id }}</td>
+                    <td class="text-center">{{ reservations.dateReservation|date("d/m/yy") }}</td>
+                    <td class="text-center">{{ reservations.hourReservation|date('H:i:s') }}</td>
+                    <td class="text-center">{{ reservations.numberPerson }}</td>
+                    <td class="text-center">{{ reservations.message }}</td>
+                    <td class="text-center">{{ reservations.user.lastName }}{{ reservations.user.firstName }}</td>
+                    <td class="text-center">{{ reservations.user.phoneNumber }}</td>
+                    <td class="text-center">{{ reservations.user.email }}</td>
 
 
-                    <td>
+                    <td class="col-md-2 text-center">
                         <a href="" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a><a href="" class="btn btn-danger">Supprimer</a>
                     </td>
                     {% endfor %}

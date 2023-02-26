@@ -1,12 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Accueil{% endblock %}
+{% block title %}Les Horaires{% endblock %}
+
+
 
 {% block body %}
 
     <!-- HOURS START -->
+    <div class=" container-fluid text-center ">
+        <img src="../img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
+        <h2 class="mt-3 text-center text-dark">Les Horaires</h2>
+    </div>
 
-    <!-- HOURS END -->
+    <main>
 
+        <!-- BUTTON CREATE HOURS  START -->
+        <div class="d-grid gap-2 col-6 mx-auto mt-3">
+            <a class="btn btn-outline-danger btn-dark text-light" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                </svg> Créer des Horaires
+            </a>
+        </div>
+        <!-- BUTTON CREATE  HOURS  END -->
+
+        <!-- LIST  HOURS START -->
+        <div class="container">
+            <div class="table-responsive">
+
+                <table class="table  table-light table-striped table-bordered table-hover mt-5">
+                    <thead >
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Jours</th>
+                        <th class="text-center">Horaires</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for hours in hours %}
+                    <tr>
+                        <td class="text-center">{{ hours.id }}</td>
+                        <td class=" text-center">{{ hours.day }}</td>
+                        <td class=" text-center">{{ hours.hourtime }}</td>
+                        <td class="col-md-3 text-center">
+                            <a href="" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a><a href="" class="btn btn-danger">Supprimer</a>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- LIST HOURS  END -->
+
+    <!--  HOURS  END -->
 
 {% endblock %}

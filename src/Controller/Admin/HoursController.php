@@ -14,9 +14,11 @@ class HoursController extends AbstractController
     public function showhours (HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
+        $hours = $hourRepository->findAll();
 
         return $this->render('admin/hours.html.twig', [
             'hourFixtures' => $hourFixtures,
+            'hours' => $hours
         ]);
     }
 }

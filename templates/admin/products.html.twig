@@ -23,17 +23,17 @@
            <!-- BUTTON CREATE PRODUCT END -->
 
            <!-- LIST PRODUCTS START -->
-           <div class="container-fluid">
+           <div class="container">
                <div class="table-responsive">
 
-                   <table class="table table-light table-striped table-bordered mt-5">
+                   <table class="table table-light table-striped table-bordered table-hover mt-5">
                        <thead >
                        <tr>
-                       <th>ID</th>
-                       <th>Catégorie</th>
-                       <th>Produit</th>
-                       <th>Prix</th>
-                       <th>Destination</th>
+                       <th class="text-center">ID</th>
+                       <th class="text-center">Catégorie</th>
+                       <th class="text-center">Produit</th>
+                       <th class="text-center">Prix</th>
+                       <th class="text-center">Destination</th>
                        <th></th>
                        </tr>
                        </thead>
@@ -41,14 +41,14 @@
 
                        {% for productsFixtures in productsFixtures %}
                        <tr>
-                           <td>{{ productsFixtures.id }}</td>
-                           <td>{{ productsFixtures.category.nameCategory }}</td>
-                           <td>{{ productsFixtures.nameProduct }}</td>
-                           <td>{{ productsFixtures.unitPrice }}{{ displayCurrency() }}</td>
-                           <td>{{ productsFixtures.destination }}</td>
+                           <td class="text-center">{{ productsFixtures.id }}</td>
+                           <td class="text-center">{{ productsFixtures.category.nameCategory }}</td>
+                           <td class="text-center">{{ productsFixtures.nameProduct }}</td>
+                           <td class="text-center">{{ productsFixtures.unitPrice }}{{ displayCurrency() }}</td>
+                           <td class="text-center">{{ productsFixtures.destination }}</td>
 
 
-                           <td>
+                           <td class="col-md-3 text-center">
                                <a href="" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a><a href="" class="btn btn-danger">Supprimer</a>
                            </td>
                            {% endfor %}
