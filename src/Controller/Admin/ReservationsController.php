@@ -18,6 +18,7 @@ class ReservationsController extends AbstractController
         $hourFixtures = $hourRepository->find(33);
         $reservations = $reservationRepository->findAll();
 
+
         $reservationsTest =  $reservations[0];
         dump( $reservationsTest->getUser());
 
