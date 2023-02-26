@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Repository\HourRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,12 +21,14 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/administrators', name: 'app_admin_administrators')]
-    public function showadministrators (HourRepository $hourRepository): Response
+    public function showadministrators (HourRepository $hourRepository, UserRepository $userRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
+        $users = $userRepository->findBy(['roles' => "ROLE_ADMIN"]);
 
         return $this->render('admin/administrators.html.twig', [
             'hourFixtures' => $hourFixtures,
+            'users' => $users
         ]);
     }
 
