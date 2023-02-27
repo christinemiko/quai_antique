@@ -113,3 +113,7 @@ createmenus:
 newproducts:
     path: /admin/newproducts
     controller: App\Controller\ProductsController::newproducts
+
+editproducts:
+    path: /admin/editproducts/{id}
+    controller: App\Controller\ProductsController::editproducts
