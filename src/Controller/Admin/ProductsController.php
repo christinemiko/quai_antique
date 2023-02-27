@@ -32,7 +32,7 @@ class ProductsController extends AbstractController
         $productsFixtures = $paginator->paginate(
             $productRepository->findAll(),
             $request->query->getInt('page', 1), /*page number*/
-            15 /*limit per page*/
+            10 /*limit per page*/
         );
 
         return $this->render('admin/products.html.twig', [
@@ -53,7 +53,7 @@ class ProductsController extends AbstractController
             $product = $form->getData();
             $entityManager->persist($product);
             $entityManager->flush();
-            //return $this->redirectToRoute('products');
+            return $this->redirectToRoute('products');
         }
 
 
