@@ -18,12 +18,14 @@ class ReservationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('hourReservation',TimeType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Heure'])
+            ->add('hourReservation',TimeType::class, [
+                'attr' => [ 'class' => 'form-control'],
+                'label' => 'Heure',
+                'hours' => [12, 13, 14, 19, 20, 21]
+            ])
             ->add('dateReservation',DateType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Date'] )
             ->add('numberPerson', NumberType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nombre de Personnes'])
             ->add('message',TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'] )
-
-
         ;
     }
 

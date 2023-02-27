@@ -35,3 +35,14 @@
      </main>
      <!-- RESERVATION PAGE END -->
  {% endblock %}
+
+ {% block custom_javascripts %}
+     <script>
+         // addEventListener pour ecouter des events
+         fetch('/check-availibility')
+             .then((response) => response.json())
+             .then((data) => {
+                 console.log(data)
+             });
+     </script>
+ {% endblock %}

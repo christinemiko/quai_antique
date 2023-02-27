@@ -110,3 +110,6 @@ createmenus:
     path: /admin/createmenus
     controller: App\Controller\MenusController::createmenus
 
+newproducts:
+    path: /admin/newproducts
+    controller: App\Controller\ProductsController::newproducts

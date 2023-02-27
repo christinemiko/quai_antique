@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'app_reservation')]
-    public function index(Request $request,UserAuthenticatorInterface $userAuthenticator,EntityManagerInterface $entityManager,AppLoginAuthenticator $authenticator, HourRepository $repository): Response
+    public function index(Request $request,EntityManagerInterface $entityManager,AppLoginAuthenticator $authenticator, HourRepository $repository): Response
     {
         $hourFixtures = $repository->find(33);
 
@@ -36,20 +36,20 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $reservation = $form->getData();
+            dump($reservation);
             $entityManager->persist($reservation);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            //$entityManager->flush();
         }
 
         return $this->render('reservation/reservation.html.twig', [
             'hourFixtures' => $hourFixtures,
             'reservationForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/check-availibility', name: 'check_availibility')]
+    public function checkAvailabity(Request $request): Response
+    {
+        return $this->json(["available" => true]);
     }
 }
