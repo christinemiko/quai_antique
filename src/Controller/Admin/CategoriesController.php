@@ -61,6 +61,36 @@ class CategoriesController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/editcategories/{id}', name: 'app_admin_editcategories', methods: ['GET', 'POST'])]
+    public function editCategories(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,CategoryRepository $categoryRepository, int $id): Response
+    {
+        $hourFixtures = $hourRepository->find(33);
+
+        $categories = $categoryRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(CategoriesFormType::class, $categories);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($categories);
+            $entityManager->flush();
+            return $this->redirectToRoute('categories');
+        }
+
+        return $this->render('admin/editcategories.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+        ]);
+
+    }
+
+    #[Route('/admin/deletecategories/{id}', name: 'app_admin_deletecategories', methods: ['GET'])]
+    public function deleteCategories( EntityManagerInterface $entityManager, Category $category): Response
+    {
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("categories");
+    }
 
 
 }
