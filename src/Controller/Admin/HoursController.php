@@ -60,5 +60,37 @@ class HoursController extends AbstractController
 
          ]);
      }
+
+    #[Route('/admin/edithours/{id}', name: 'app_admin_edithours', methods: ['GET', 'POST'])]
+    public function editHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,int $id): Response
+    {
+        $hourFixtures = $hourRepository->find(33);
+
+        $hours = $hourRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(HoursFormType::class, $hours);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($hours);
+            $entityManager->flush();
+            return $this->redirectToRoute('hours');
+        }
+
+        return $this->render('admin/edithours.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+
+    }
+
+    #[Route('/admin/deletehours/{id}', name: 'app_admin_deletehours', methods: ['GET'])]
+    public function deleteMenus( EntityManagerInterface $entityManager, Hour $hours): Response
+    {
+        $entityManager->remove($hours);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("hours");
+    }
 }
 

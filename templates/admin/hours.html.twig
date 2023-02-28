@@ -45,7 +45,8 @@
                         <td class=" text-center">{{ hours.day }}</td>
                         <td class=" text-center">{{ hours.hourtime }}</td>
                         <td class="col-md-3 text-center">
-                            <a href="" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a><a href="" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ path('edithours',{'id':hours.id }) }}" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a>
+                            <a href="{{ path('deletehours',{'id':hours.id }) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                         {% endfor %}
                     </tr>
