@@ -82,10 +82,6 @@ class MenusController extends AbstractController
         dump($menu->getProductMenus());
 
         $productMenus = $repository->findOneBy(["id" => $id]);
-
-        $productMenuTest = $productMenus[0];
-        dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
-
         $form = $this->createForm(ProductMenusFormType::class, $productMenus);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
@@ -94,7 +90,7 @@ class MenusController extends AbstractController
             return $this->redirectToRoute('menus');
         }
 
-        return $this->render('admin/editproducts.html.twig', [
+        return $this->render('admin/editproductmenus.html.twig', [
 
             'hourFixtures' => $hourFixtures,
             'form' => $form->createView()

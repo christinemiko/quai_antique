@@ -85,5 +85,14 @@ class ProductsController extends AbstractController
 
         ]);
     }
+     #[Route('/admin/deleteproducts/{id}', name: 'app_admin_deleteproducts', methods: ['GET'])]
+     public function delete( EntityManagerInterface $entityManager, Product $product): Response
+     {
+         $entityManager->remove($product);
+         $entityManager->flush();
+
+         return $this->redirectToRoute("products");
+     }
+
 }
 

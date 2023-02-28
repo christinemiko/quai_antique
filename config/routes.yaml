@@ -118,6 +118,15 @@ editproducts:
     path: /admin/editproducts/{id}
     controller: App\Controller\ProductsController::editproducts
 
+deleteproducts:
+    path: /admin/deleteproducts/{id}
+    controller: App\Controller\ProductsController::deleteproducts
+
+
 newproductmenus:
     path: /admin/newproductmenus
     controller: App\Controller\MenusController::newproductmenus
+
+editproductmenus:
+    path: /admin/editproductmenus/{id}
+    controller: App\Controller\MenusController::editproductmenus
