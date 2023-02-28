@@ -117,3 +117,7 @@ newproducts:
 editproducts:
     path: /admin/editproducts/{id}
     controller: App\Controller\ProductsController::editproducts
+
+newproductmenus:
+    path: /admin/newproductmenus
+    controller: App\Controller\MenusController::newproductmenus

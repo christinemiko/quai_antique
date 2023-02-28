@@ -2,10 +2,16 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ProductMenu;
+use App\Entity\Product;
+use App\Form\ProductFormType;
+use App\Form\ProductMenusFormType;
 use App\Repository\HourRepository;
 use App\Repository\MenuRepository;
 use App\Repository\ProductMenuRepository;
+use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +45,60 @@ class MenusController extends AbstractController
             'productMenus' => $productMenus,
             'menu' => $menu,
             'hourFixtures' => $hourFixtures,
+        ]);
+    }
+    #[Route('/admin/newproductmenus', name: 'app_admin_newproductmenus', methods: ['GET', 'POST'])]
+    public function new(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductMenuRepository $productMenuRepository) : Response
+
+    {
+        $hourFixtures = $hourRepository->find(33);
+        $productMenus = new productMenu ();
+
+        $form = $this->createForm(ProductMenusFormType::class, $productMenus);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $productMenus = $form->getData();
+            $entityManager->persist($productMenus);
+            $entityManager->flush();
+            return $this->redirectToRoute('menus');
+        }
+
+
+        return $this->render('admin/newproductmenus.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+    }
+
+    #[Route('/admin/editproductmenus/{id}', name: 'app_admin_editproductmenuss', methods: ['GET', 'POST'])]
+    public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): response
+    {
+        $hourFixtures = $hourRepository->find(33);
+
+        $menu = $menuRepository->find(62);
+        dump($menu->getProductMenus());
+
+        $productMenus = $repository->findOneBy(["id" => $id]);
+
+        $productMenuTest = $productMenus[0];
+        dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
+
+        $form = $this->createForm(ProductMenusFormType::class, $productMenus);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($productMenus);
+            $entityManager->flush();
+            return $this->redirectToRoute('menus');
+        }
+
+        return $this->render('admin/editproducts.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
         ]);
     }
 
