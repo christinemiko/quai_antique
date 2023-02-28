@@ -41,7 +41,7 @@ class Hour
         return $this->hourtime;
     }
 
-    public function setHour(string $hourtime): self
+    public function setHourtime(string $hourtime): self
     {
         $this->hourtime = $hourtime;
 

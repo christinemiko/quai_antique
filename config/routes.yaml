@@ -127,6 +127,19 @@ hours:
     path: /admin/hours
     controller: App\Controller\HoursController::hours
 
+newhours:
+    path: /admin/newhours
+    controller: App\Controller\HoursController::newhours
+
+edithours:
+    path: /admin/edithours/{id}
+    controller: App\Controller\HoursController::edithours
+
+deletehours:
+    path: /admin/deletehours/{id}
+    controller: App\Controller\HoursController::deletehours
+
+
 admin:
     path: /admin
     controller: App\Controller\AdminController::admin

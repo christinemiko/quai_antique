@@ -30,7 +30,7 @@ class ReservationsFormType extends AbstractType
             ->add('user',EntityType::class,[
                 'class'=> User:: class,
                 'choice_label' => function($user) {
-                return $user->getlastName() . " " . $user->getfirstname() . "/ Email: " . $user->getEmail() . "/ Tél: " . $user->getphoneNumber();
+                return $user->getLastname() . " " . $user->getfirstname() . "/ Email: " . $user->getEmail() . "/ Tél: " . $user->getphoneNumber();
                 },
                 'label' => 'Clients']);
 

@@ -24,13 +24,13 @@ class ReservationsController extends AbstractController
     public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
-        $reservations = $reservationRepository->findAll();
+        $reservations = $reservationRepository->findBy([],['dateReservation' => 'ASC']);
 
         $reservationsTest =  $reservations[0];
         dump( $reservationsTest->getUser());
 
         $reservations = $paginator->paginate(
-            $reservationRepository->findAll(),
+            $reservationRepository->findBy([],['dateReservation' => 'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );

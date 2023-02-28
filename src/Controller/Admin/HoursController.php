@@ -2,7 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Hour;
+use App\Entity\Menu;
+use App\Form\HoursFormType;
+use App\Form\MenusFormType;
 use App\Repository\HourRepository;
+use App\Repository\MenuRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +19,7 @@ class HoursController extends AbstractController
 {
 
     #[Route('/admin/hours', name: 'app_admin_hours')]
-    public function showhours (HourRepository $hourRepository,PaginatorInterface $paginator, Request $request): Response
+    public function index (HourRepository $hourRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
 
@@ -28,5 +34,31 @@ class HoursController extends AbstractController
             'hours' => $hours
         ]);
     }
+
+     #[Route('/admin/newhours', name: 'app_admin_newhours', methods: ['GET', 'POST'])]
+     public function newHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager): Response
+     {
+         $hourFixtures = $hourRepository->find(33);
+
+         $hours = new Hour ();
+
+         $form = $this->createForm(HoursFormType::class, $hours);
+
+         $form->handleRequest($request);
+         if ($form->isSubmitted() && $form->isValid()){
+             $hours = $form->getData();
+             $entityManager->persist($hours);
+             $entityManager->flush();
+
+             return $this->redirectToRoute('hours');
+         }
+
+         return $this->render('admin/newhours.html.twig', [
+
+             'hourFixtures' => $hourFixtures,
+             'form' => $form->createView()
+
+         ]);
+     }
 }
 

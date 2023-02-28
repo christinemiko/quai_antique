@@ -31,14 +31,14 @@ class MenusController extends AbstractController
         $menu = $menuRepository->find(62);
         dump($menu->getProductMenus());
 
-        $productMenus = $repository->findAll();
+        $productMenus = $repository->findBy([],['menu' => 'ASC']);
 
 
         $productMenuTest = $productMenus[0];
         dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
 
         $productMenus = $paginator->paginate(
-            $repository->findAll(),
+            $repository->findBy([],['category' => 'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );

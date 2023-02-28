@@ -24,13 +24,13 @@ class ProductsController extends AbstractController
     {
         $hourFixtures = $hourRepository->find(33);
 
-        $productsFixtures = $productRepository->findAll();
+        $productsFixtures = $productRepository->findBy([],['category' => 'ASC']);
 
         $productsFixturesTest =  $productsFixtures[0];
         dump( $productsFixturesTest->getCategory()->getNameCategory());
 
         $productsFixtures = $paginator->paginate(
-            $productRepository->findAll(),
+            $productRepository->findBy([],['category' => 'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
