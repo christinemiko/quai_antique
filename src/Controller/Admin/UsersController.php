@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ProductMenu;
 use App\Entity\User;
+use App\Form\EditUserFormType;
 use App\Form\NewUserFormType;
 use App\Form\ProductMenusFormType;
 use App\Form\RegistrationFormType;
@@ -75,11 +77,11 @@ class UsersController extends AbstractController
 
    #[Route('/admin/editusers/{id}', name: 'app_admin_editusers', methods: ['GET', 'POST'])]
    public function editUsers(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
-{
+   {
         $hourFixtures = $hourRepository->find(33);
 
     $users = $userRepository->findOneBy(["id" => $id]);
-        $form = $this->createForm(NewUserFormType::class, $users);
+        $form = $this->createForm(EditUserFormType::class, $users);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $entityManager->persist( $users);
@@ -91,10 +93,17 @@ class UsersController extends AbstractController
 
        'hourFixtures' => $hourFixtures,
         'form' => $form->createView()
+        ]);
+    }
 
-]);
-}
+    #[Route('/admin/deleteusers/{id}', name: 'app_admin_deleteusers', methods: ['GET'])]
+    public function deleteUsers( EntityManagerInterface $entityManager, User $user): Response
+    {
+        $entityManager->remove($user);
+        $entityManager->flush();
 
+        return $this->redirectToRoute("users");
+    }
 
 
 
