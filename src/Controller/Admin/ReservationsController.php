@@ -85,10 +85,16 @@ class ReservationsController extends AbstractController
 
             'hourFixtures' => $hourFixtures,
             'form' => $form->createView()
-
         ]);
-
     }
 
+   #[Route('/admin/deletereservations/{id}', name: 'app_admin_deletereservations', methods: ['GET'])]
+   public function deleteMenus( EntityManagerInterface $entityManager, Reservation $reservations): Response
+   {
+       $entityManager->remove($reservations);
+       $entityManager->flush();
+
+       return $this->redirectToRoute("reservations");
+   }
 }
 
