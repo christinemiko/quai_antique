@@ -50,7 +50,7 @@ class MenusController extends AbstractController
         ]);
     }
     #[Route('/admin/newproductmenus', name: 'app_admin_newproductmenus', methods: ['GET', 'POST'])]
-    public function new(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductMenuRepository $productMenuRepository) : Response
+    public function newProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductMenuRepository $productMenuRepository) : Response
 
     {
         $hourFixtures = $hourRepository->find(33);
@@ -100,7 +100,7 @@ class MenusController extends AbstractController
         ]);
     }
     #[Route('/admin/deleteproductmenus/{id}', name: 'app_admin_deleteproductmenus', methods: ['GET'])]
-    public function delete( EntityManagerInterface $entityManager, ProductMenu $productMenus): Response
+    public function deleteProductMenus( EntityManagerInterface $entityManager, ProductMenu $productMenus): Response
     {
         $entityManager->remove($productMenus);
         $entityManager->flush();
@@ -128,7 +128,7 @@ class MenusController extends AbstractController
     }
 
    #[Route('/admin/newmenus', name: 'app_admin_newmenus', methods: ['GET', 'POST'])]
-   public function newmenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, MenuRepository $menuRepository):Response
+   public function newMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, MenuRepository $menuRepository):Response
    {
        $hourFixtures = $hourRepository->find(33);
        $menus = new Menu ();
@@ -173,4 +173,14 @@ class MenusController extends AbstractController
          ]);
 
      }
+
+    #[Route('/admin/deletemenus/{id}', name: 'app_admin_deletemenus', methods: ['GET'])]
+    public function deleteMenus( EntityManagerInterface $entityManager, Menu $menus): Response
+    {
+        $entityManager->remove($menus);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("createmenus");
+    }
+
 }
