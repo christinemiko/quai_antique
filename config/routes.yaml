@@ -123,6 +123,18 @@ categories:
     path: /admin/categories
     controller: App\Controller\CategoriesController::categories
 
+newcategories:
+    path: /admin/newcategories
+    controller: App\Controller\CategoriesController::newcategories
+
+editcategories:
+    path: /admin/editcategories/{id}
+    controller: App\Controller\CategoriesController::editcategories
+
+deletecategories:
+    path: /admin/deletecategories/{id}
+    controller: App\Controller\CategoriesController::deletecategories
+
 hours:
     path: /admin/hours
     controller: App\Controller\HoursController::hours
