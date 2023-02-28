@@ -82,6 +82,11 @@ reservations:
     path:  /admin/reservations
     controller: App\Controller\ReservationsController::reservations
 
+newreservations:
+    path:  /admin/newreservations
+    controller: App\Controller\ReservationsController::newreservations
+
+
 users:
     path: /admin/users
     controller: App\Controller\UsersController::users

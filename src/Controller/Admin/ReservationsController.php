@@ -2,9 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Menu;
+use App\Entity\Reservation;
+use App\Form\MenusFormType;
+use App\Form\ReservationsFormType;
 use App\Repository\HourRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,5 +39,36 @@ class ReservationsController extends AbstractController
             'reservations' => $reservations
         ]);
     }
+
+
+    #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
+    public function newReservations(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository):Response
+    {
+        $hourFixtures = $hourRepository->find(33);
+        $reservations = new Reservation ();
+
+        $form = $this->createForm(ReservationsFormType::class, $reservations);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $reservations = $form->getData();
+            $entityManager->persist($reservations);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('reservations');
+        }
+
+        return $this->render('admin/newreservations.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+    }
+
+
+
+
+
 }
 
