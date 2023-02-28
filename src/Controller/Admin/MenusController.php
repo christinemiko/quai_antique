@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Menu;
 use App\Entity\ProductMenu;
 use App\Entity\Product;
+use App\Form\MenusFormType;
 use App\Form\ProductFormType;
 use App\Form\ProductMenusFormType;
 use App\Repository\HourRepository;
@@ -123,5 +125,27 @@ class MenusController extends AbstractController
         ]);
     }
 
-}
+   #[Route('/admin/newmenus', name: 'app_admin_newmenus', methods: ['GET', 'POST'])]
+   public function newmenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, MenuRepository $menuRepository):Response
+   {
+       $hourFixtures = $hourRepository->find(33);
+       $menus = new Menu ();
 
+       $form = $this->createForm(MenusFormType::class, $menus);
+
+       $form->handleRequest($request);
+       if ($form->isSubmitted() && $form->isValid()){
+           $menus = $form->getData();
+           $entityManager->persist($menus);
+           $entityManager->flush();
+           return $this->redirectToRoute('menus');
+       }
+
+       return $this->render('admin/newmenus.html.twig', [
+
+           'hourFixtures' => $hourFixtures,
+           'form' => $form->createView()
+
+       ]);
+   }
+}

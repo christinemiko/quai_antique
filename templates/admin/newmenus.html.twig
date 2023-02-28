@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un Nouveau Menu{% endblock %}
+
+{% block body %}
+
+    <!-- NEW MENU START -->
+    <div class=" container-fluid text-center ">
+        <img src="../img/logo.jpg" class="img-fluid" alt="Logo Quai Antique">
+        <h2 class="mt-3 text-center text-dark">Création d'un Nouveau Menu</h2>
+    </div>
+
+    <main>
+
+        <section class="container">
+            <div class="row">
+                <div class="col">
+                    <form class="container-fluid" method="post">
+                        {{ form_start(form) }}
+
+                        <fieldset >
+
+                                {{ form_row(form.nameMenu) }}
+
+                                {{ form_row(form.priceMenu) }}
+
+                        </fieldset>
+
+                        <!-- BUTTON  START -->
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-ml btn-outline-danger mt-5 text-dark">Créer</button>
+                            {{ form_end(form) }}
+                        </div>
+                        <!-- BUTTON  END -->
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+    <!-- NEW MENU END->
+{% endblock %}
