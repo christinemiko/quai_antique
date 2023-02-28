@@ -24,26 +24,7 @@ class NewUserFormType extends AbstractType
             ->add('first_name', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Prénom'])
             ->add('allergie', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'])
             ->add('phone_number', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Télephone'])
-            ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Email'])
-
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez insérer votre Mot de Passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre Mot de Passe doit contenir au minimum {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ], 'label' => 'Mot de Passe'
-            ])
-        ;
+            ->add('email', EmailType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Email']);
     }
 
 public function configureOptions(OptionsResolver $resolver): void

@@ -4,8 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\NewUserFormType;
+use App\Form\ProductMenusFormType;
 use App\Form\RegistrationFormType;
 use App\Repository\HourRepository;
+use App\Repository\MenuRepository;
+use App\Repository\ProductMenuRepository;
 use App\Repository\UserRepository;
 use App\Security\AppLoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -69,6 +72,31 @@ class UsersController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
+   #[Route('/admin/editusers/{id}', name: 'app_admin_editusers', methods: ['GET', 'POST'])]
+   public function editUsers(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
+{
+        $hourFixtures = $hourRepository->find(33);
+
+    $users = $userRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(NewUserFormType::class, $users);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist( $users);
+            $entityManager->flush();
+            return $this->redirectToRoute('users');
+        }
+
+        return $this->render('admin/editusers.html.twig', [
+
+       'hourFixtures' => $hourFixtures,
+        'form' => $form->createView()
+
+]);
+}
+
+
+
 
 
 }
