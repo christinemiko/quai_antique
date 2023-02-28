@@ -32,7 +32,7 @@ class UsersController extends AbstractController
 
 
         $users = $paginator->paginate(
-            $userRepository->findAll(),
+            $userRepository->findBy([],['lastName' => 'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
