@@ -86,6 +86,13 @@ newreservations:
     path:  /admin/newreservations
     controller: App\Controller\ReservationsController::newreservations
 
+editreservations:
+    path:  /admin/editreservations/{id}
+    controller: App\Controller\ReservationsController::editreservations
+
+deletereservations:
+    path:  /admin/deletereservations/{id}
+    controller: App\Controller\ReservationsController::deletereservations
 
 users:
     path: /admin/users

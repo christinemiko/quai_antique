@@ -55,7 +55,8 @@
 
 
                     <td class="col-md-2 text-center">
-                        <a href="" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a><a href="" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('editreservations',{'id':reservations.id }) }}" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a>
+                        <a href="{{ path('deletereservations',{'id':reservations.id }) }}" class="btn btn-danger">Supprimer</a>
                     </td>
                     {% endfor %}
                 </tr>

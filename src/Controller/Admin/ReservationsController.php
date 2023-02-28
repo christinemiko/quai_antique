@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Form\MenusFormType;
 use App\Form\ReservationsFormType;
 use App\Repository\HourRepository;
+use App\Repository\MenuRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -66,9 +67,28 @@ class ReservationsController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/editreservations/{id}', name: 'app_admin_editreservations', methods: ['GET', 'POST'])]
+    public function editReservations(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,ReservationRepository $reservationRepository,int $id): Response
+    {
+        $hourFixtures = $hourRepository->find(33);
 
+        $reservations = $reservationRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(ReservationsFormType::class,$reservations);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($reservations);
+            $entityManager->flush();
+            return $this->redirectToRoute('reservations');
+        }
 
+        return $this->render('admin/editreservations.html.twig', [
 
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+
+    }
 
 }
 
