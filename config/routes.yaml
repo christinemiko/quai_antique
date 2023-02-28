@@ -98,6 +98,19 @@ users:
     path: /admin/users
     controller: App\Controller\UsersController::users
 
+newusers:
+    path: /admin/newusers
+    controller: App\Controller\UsersController::newusers
+
+editusers:
+    path:  /admin/editusers/{id}
+    controller: App\Controller\UsersController::editusers
+
+deleteusers:
+    path:  /admin/deleteusers/{id}
+    controller: App\Controller\UsersController::deleteusers
+
+
 pictures:
     path: /admin/pictures
     controller: App\Controller\PicturesController::pictures
