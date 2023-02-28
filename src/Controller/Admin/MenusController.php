@@ -76,7 +76,7 @@ class MenusController extends AbstractController
     }
 
     #[Route('/admin/editproductmenus/{id}', name: 'app_admin_editproductmenus', methods: ['GET', 'POST'])]
-    public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): response
+    public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
 
@@ -109,14 +109,16 @@ class MenusController extends AbstractController
     }
 
 
-
-
-
     #[Route('/admin/createmenus', name: 'app_admin_createmenus')]
-    public function index (HourRepository $hourRepository, MenuRepository $menuRepository): Response
+    public function index (HourRepository $hourRepository, MenuRepository $menuRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
-        $menus = $menuRepository->findAll();
+
+        $menus = $paginator->paginate(
+            $menuRepository->findAll(),
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
 
         return $this->render('admin/createmenus.html.twig', [
 
@@ -138,7 +140,7 @@ class MenusController extends AbstractController
            $menus = $form->getData();
            $entityManager->persist($menus);
            $entityManager->flush();
-           return $this->redirectToRoute('menus');
+           return $this->redirectToRoute('createmenus');
        }
 
        return $this->render('admin/newmenus.html.twig', [
@@ -148,4 +150,27 @@ class MenusController extends AbstractController
 
        ]);
    }
+
+     #[Route('/admin/editmenus/{id}', name: 'app_admin_editmenus', methods: ['GET', 'POST'])]
+     public function editMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,int $id): Response
+     {
+         $hourFixtures = $hourRepository->find(33);
+
+         $menus = $menuRepository->findOneBy(["id" => $id]);
+         $form = $this->createForm(MenusFormType::class, $menus);
+         $form->handleRequest($request);
+         if ($form->isSubmitted() && $form->isValid()){
+             $entityManager->persist($menus);
+             $entityManager->flush();
+             return $this->redirectToRoute('createmenus');
+         }
+
+         return $this->render('admin/editmenus.html.twig', [
+
+             'hourFixtures' => $hourFixtures,
+             'form' => $form->createView()
+
+         ]);
+
+     }
 }

@@ -114,6 +114,10 @@ newmenus:
     path: /admin/newmenus
     controller: App\Controller\MenusController::newmenus
 
+editmenus:
+    path: /admin/editmenus/{id}
+    controller: App\Controller\MenusController::editmenus
+
 newproducts:
     path: /admin/newproducts
     controller: App\Controller\ProductsController::newproducts
