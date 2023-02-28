@@ -130,3 +130,7 @@ newproductmenus:
 editproductmenus:
     path: /admin/editproductmenus/{id}
     controller: App\Controller\MenusController::editproductmenus
+
+deleteproductmenus:
+    path: /admin/deleteproductmenus/{id}
+    controller: App\Controller\MenusController::deleteproductmenus

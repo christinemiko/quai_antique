@@ -73,7 +73,7 @@ class MenusController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editproductmenus/{id}', name: 'app_admin_editproductmenuss', methods: ['GET', 'POST'])]
+    #[Route('/admin/editproductmenus/{id}', name: 'app_admin_editproductmenus', methods: ['GET', 'POST'])]
     public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -97,6 +97,18 @@ class MenusController extends AbstractController
 
         ]);
     }
+    #[Route('/admin/deleteproductmenus/{id}', name: 'app_admin_deleteproductmenus', methods: ['GET'])]
+    public function delete( EntityManagerInterface $entityManager, ProductMenu $productMenus): Response
+    {
+        $entityManager->remove($productMenus);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("menus");
+    }
+
+
+
+
 
     #[Route('/admin/createmenus', name: 'app_admin_createmenus')]
     public function index (HourRepository $hourRepository, MenuRepository $menuRepository): Response
