@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
+
 use App\Entity\Picture;
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -22,13 +22,14 @@ class PicturesFormType extends AbstractType
             ->add('link', FileType::class,[
                 'label' => 'Image',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024K',
                         'mimeTypes' => [
                             'image/png',
-                            'image/jpeg'
+                            'image/jpeg',
+                            'image/jpg',
                         ],
                         'mimeTypesMessage' => 'Veuillez télécharger un fichier au format jpeg, png.',
                     ])
@@ -37,7 +38,7 @@ class PicturesFormType extends AbstractType
 
             ->add('product', EntityType::class, [
                 'class'=> Product:: class,
-                'choice_label' => 'nameProduct',
+                'choice_label' => 'id',
                 'label' => 'Nom du Produit'
             ]);
 

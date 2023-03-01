@@ -44,8 +44,11 @@
                     <tr>
                         <td class="text-center">{{ pictures.id }}</td>
                         <td class=" text-center">{{ pictures.namePicture }}</td>
-                        <td class=" text-center">{{ pictures.link }}</td>
-                        <td class=" text-center">{{ pictures.product }}</td>
+                        <td class=" text-center">{% if pictures.getLink() %}
+                                <img src="{{ asset('uploads/pictures/' ~ pictures.getLink()) }}">
+                            {% endif %} {{ pictures.getLink() }}
+                        </td>
+                        <td class=" text-center">{{ pictures.product.nameProduct }}</td>
 
                         <td class="col-md-3 text-center">
                             <a href="{{ path('editpictures',{'id':pictures.id }) }}" class="btn btn-dark mx-2 mb-2 mt-2">Modifier</a>

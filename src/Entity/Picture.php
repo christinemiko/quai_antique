@@ -16,7 +16,7 @@ class Picture
     #[ORM\Column(type:"string",length: 150)]
     private ?string $namePicture = null;
 
-    #[ORM\Column(type:"string", length: 255)]
+    #[ORM\Column(type:"string", length: 255, nullable: true)]
     private ?string $link = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -46,7 +46,7 @@ class Picture
         return $this->link;
     }
 
-    public function setLink(string $link): self
+    public function setLink(?string $link): self
     {
         $this->link = $link;
 
@@ -58,12 +58,14 @@ class Picture
         return $this->product;
     }
 
-    public function setProduct(Product $product): self
+    public function setProduct(?Product $product): self
     {
         $this->product = $product;
 
         return $this;
     }
+
+
 
 
 }
