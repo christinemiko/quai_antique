@@ -115,6 +115,19 @@ pictures:
     path: /admin/pictures
     controller: App\Controller\PicturesController::pictures
 
+newpictures:
+    path: /admin/newpictures
+    controller: App\Controller\PicturesController::newpictures
+
+editpictures:
+    path: /admin/editpictures/{id}
+    controller: App\Controller\PicturesController::editpictures
+
+deletepictures:
+    path: /admin/deletepictures/{id}
+    controller: App\Controller\PicturesController::deletepictures
+
+
 administrators:
     path: /admin/administrators
     controller: App\Controller\AdminController::administrators

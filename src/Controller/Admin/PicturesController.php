@@ -2,8 +2,12 @@
 
 namespace App\Controller\Admin;
 
+
+use App\Entity\Picture;
+use App\Form\PicturesFormType;
 use App\Repository\HourRepository;
 use App\Repository\PictureRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,5 +34,32 @@ class PicturesController extends AbstractController
             'pictures' => $pictures
         ]);
     }
+
+    #[Route('/admin/newpictures', name: 'app_admin_newpictures', methods: ['GET', 'POST'])]
+    public function newPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, PictureRepository $pictureRepository):Response
+    {
+        $hourFixtures = $hourRepository->find(33);
+
+        $pictures = new Picture ();
+
+        $form = $this->createForm(PicturesFormType::class,$pictures);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $pictures = $form->getData();
+            $entityManager->persist($pictures);
+            $entityManager->flush();
+            return $this->redirectToRoute('pictures');
+        }
+
+        return $this->render('admin/newpictures.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+    }
+
 }
 
