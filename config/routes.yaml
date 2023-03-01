@@ -119,6 +119,19 @@ administrators:
     path: /admin/administrators
     controller: App\Controller\AdminController::administrators
 
+newadministrators:
+    path: /admin/newadministrators
+    controller: App\Controller\AdminController::newadministrators
+
+editadministrators:
+    path: /admin/editadministrators/{id}
+    controller: App\Controller\AdminController::editadministrators
+
+deleteadministrators:
+    path: /admin/deleteadministrators/{id}
+    controller: App\Controller\AdminController::deleteadministrators
+
+
 categories:
     path: /admin/categories
     controller: App\Controller\CategoriesController::categories

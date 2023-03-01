@@ -2,15 +2,11 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ProductMenu;
+
 use App\Entity\User;
 use App\Form\EditUserFormType;
 use App\Form\NewUserFormType;
-use App\Form\ProductMenusFormType;
-use App\Form\RegistrationFormType;
 use App\Repository\HourRepository;
-use App\Repository\MenuRepository;
-use App\Repository\ProductMenuRepository;
 use App\Repository\UserRepository;
 use App\Security\AppLoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +41,7 @@ class UsersController extends AbstractController
     }
 
     #[Route('/admin/newusers', name: 'app_admin_newusers')]
-    public function newUsers(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
+    public function newUsers(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
         $users = new User();
