@@ -53,6 +53,8 @@ class PicturesController extends AbstractController
 
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()){
 
             /** @var UploadedFile $linkFile */
@@ -64,7 +66,7 @@ class PicturesController extends AbstractController
                 $link = $safeFilename. '-' .uniqid('', true).'.'.$linkFile->guessExtension();
 
                 $linkFile->move(
-                    $this->getParameter(' pictures_directory'),
+                    $this->getParameter('pictures_directory'),
                     $link
                 );
 
@@ -75,7 +77,7 @@ class PicturesController extends AbstractController
             $entityManager->persist($pictures);
             $entityManager->flush();
             return $this->redirectToRoute('pictures');
-        }
+       }
 
         return $this->render('admin/newpictures.html.twig', [
 

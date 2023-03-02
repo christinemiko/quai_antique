@@ -44,9 +44,9 @@
                     <tr>
                         <td class="text-center">{{ pictures.id }}</td>
                         <td class=" text-center">{{ pictures.namePicture }}</td>
-                        <td class=" text-center">{% if pictures.getLink() %}
-                                <img src="{{ asset('uploads/pictures/' ~ pictures.getLink()) }}">
-                            {% endif %} {{ pictures.getLink() }}
+                        <td class=" text-center">{% if pictures.link() %}
+                                <img src="{{ asset('uploads/' ~ pictures.link()) }}">
+                            {% endif %} {{ pictures.link() }}
                         </td>
                         <td class=" text-center">{{ pictures.product.nameProduct }}</td>
 

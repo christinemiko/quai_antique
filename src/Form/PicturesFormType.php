@@ -40,7 +40,9 @@ class PicturesFormType extends AbstractType
                 'class'=> Product:: class,
                 'choice_label' => 'id',
                 'label' => 'Nom du Produit'
-            ]);
+            ])
+        ;
+
 
     }
 
