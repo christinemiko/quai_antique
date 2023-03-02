@@ -18,9 +18,9 @@ class PicturesFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('namePicture', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nom Image'])
+            ->add('namePicture', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nom Image : '])
             ->add('link', FileType::class,[
-                'label' => 'Image',
+                'label' => 'Image : ',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -38,8 +38,11 @@ class PicturesFormType extends AbstractType
 
             ->add('product', EntityType::class, [
                 'class'=> Product:: class,
-                'choice_label' => 'id',
-                'label' => 'Nom du Produit'
+                'choice_label' =>
+                    function($product) {
+                        return $product->getId() . "_" . $product->getCategory()->getNameCategory() . " : " . $product->getNameProduct();
+                    },
+                'label' => 'Référence  : '
             ])
         ;
 

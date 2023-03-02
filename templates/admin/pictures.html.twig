@@ -45,7 +45,7 @@
                         <td class="text-center">{{ pictures.id }}</td>
                         <td class=" text-center">{{ pictures.namePicture }}</td>
                         <td class=" text-center">{% if pictures.link() %}
-                                <img src="{{ asset('uploads/' ~ pictures.link()) }}">
+                                <img src="{{ asset('uploads/' ~ pictures.link()) }}" alt="images">
                             {% endif %} {{ pictures.link() }}
                         </td>
                         <td class=" text-center">{{ pictures.product.nameProduct }}</td>

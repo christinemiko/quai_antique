@@ -4,9 +4,13 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Picture;
+use App\Entity\ProductMenu;
+use App\Form\HoursFormType;
 use App\Form\PicturesFormType;
 use App\Repository\HourRepository;
+use App\Repository\MenuRepository;
 use App\Repository\PictureRepository;
+use App\Repository\ProductMenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use function PHPUnit\Framework\throwException;
 
 class PicturesController extends AbstractController
 {
@@ -65,10 +70,14 @@ class PicturesController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $link = $safeFilename. '-' .uniqid('', true).'.'.$linkFile->guessExtension();
 
-                $linkFile->move(
-                    $this->getParameter('pictures_directory'),
-                    $link
-                );
+                try{
+                    $linkFile->move(
+                        $this->getParameter('pictures_directory'),
+                        $link
+                    );
+                } catch (FileException $exception){
+                    throwException($exception);
+                }
 
                 $pictures->setLink($link);
             }
@@ -86,6 +95,38 @@ class PicturesController extends AbstractController
 
         ]);
     }
+
+    #[Route('/admin/editpictures/{id}', name: 'app_admin_editpictures', methods: ['GET', 'POST'])]
+    public function editPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, PictureRepository $pictureRepository, int $id): Response
+    {
+        $hourFixtures = $hourRepository->find(33);
+        $pictures = $pictureRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(PicturesFormType::class,$pictures);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($pictures);
+            $entityManager->flush();
+            return $this->redirectToRoute('pictures');
+        }
+
+        return $this->render('admin/editpictures.html.twig', [
+
+            'hourFixtures' => $hourFixtures,
+            'form' => $form->createView()
+
+        ]);
+    }
+
+    #[Route('/admin/deletepictures/{id}', name: 'app_admin_deletepictures', methods: ['GET'])]
+    public function deletePictures( EntityManagerInterface $entityManager, Picture $pictures): Response
+    {
+        $entityManager->remove($pictures);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("pictures");
+    }
+
 
 }
 
