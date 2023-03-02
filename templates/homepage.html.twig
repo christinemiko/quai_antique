@@ -16,25 +16,25 @@
          <div class="row justify-content-center mb-4">
 
                     <div class="card" style="width: 60rem;">
-                         <img src="img/plat2.jpg" class="card-img-top" alt="Plat2">
+                         <img src="{{ asset('uploads/' ~ picture.link()) }}" class="card-img-top" alt="Plat">
                          <div class="card-body">
-                         <p class="card-text text-center">Gigot d'âgneau de nos régions, légumes et topinambours rôti, servi à la crème de truffe noire.</p>
+                         <p class="card-text text-center">{{ picture.product.nameProduct }}</p>
                          </div>
                     </div>
          </div>
          <div class="row justify-content-center mb-4">
                     <div class="card" style="width: 60rem;">
-                         <img src="img/plat8.jpg" class="card-img-top" alt="Plat8">
+                         <img src="{{ asset('uploads/' ~ picture2.link()) }}" class="card-img-top" alt="Plat">
                          <div class="card-body">
-                         <p class="card-text text-center">Soufflé à la châtaigne avec son sorbet à la fleur d'oranger, saupoudré de croquants au chocolat .</p>
+                         <p class="card-text text-center">{{ picture2.product.nameProduct }}</p>
                          </div>
                     </div>
          </div>
          <div class="row justify-content-center mb-4">
                     <div class="card text-center" style="width: 60rem;">
-                         <img src="img/plat14.jpg" class="card-img-top" alt="Plat14">
+                         <img src="{{ asset('uploads/' ~ picture3.link()) }}" class="card-img-top" alt="Plat">
                          <div class="card-body">
-                         <p class="card-text text-center">Compressé de pomme et de coing, flambé au grand marnier , accompagné d'agrumes.</p>
+                         <p class="card-text text-center">{{ picture3.product.nameProduct }}</p>
                          </div>
                      </div>
          </div>
