@@ -19,7 +19,7 @@ class Picture
     #[ORM\Column(type:"string", length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservation')]
+    #[ORM\ManyToOne(inversedBy: 'picture')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
