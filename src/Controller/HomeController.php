@@ -12,7 +12,7 @@
  {
 
      #[Route('/', 'accueil')]
-     public function Accueil(HourRepository $repository, PictureRepository $pictureRepository,) : Response
+     public function Accueil(HourRepository $repository, PictureRepository $pictureRepository) : Response
      {
          $hourFixtures = $repository->find(33);
          $picture = $pictureRepository->find(19);
@@ -34,11 +34,15 @@
      }
 
      #[Route('histoire')]
-     public function Histoire(HourRepository $repository) : Response
+     public function Histoire(HourRepository $repository,PictureRepository $pictureRepository) : Response
      {
          $hourFixtures = $repository->find(33);
+         $picture = $pictureRepository->find(22);
+         dump( $picture->getProduct());
+
          return $this->render('history.html.twig', [
-             'hourFixtures' => $hourFixtures
+             'hourFixtures' => $hourFixtures,
+             'picture' => $picture,
          ]);
      }
 

@@ -65,8 +65,9 @@
 
          <!--IMAGE PLAT START -->
              <div class=" text-center mt-5 ">
-                 <img src="img/plat9.jpg" alt="Plat3" class="img-fluid" >
+                 <img src="{{ asset('uploads/' ~ picture.link()) }}" alt="Plat3" class="img-fluid" >
              </div>
+            <div class="text-center mt-3">{{ picture.product.nameProduct }}</div>
          <!--IMAGE PLAT END -->
 
          <!-- PRESENTATION CHEF START -->
