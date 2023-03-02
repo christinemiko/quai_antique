@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Reservation;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -29,10 +30,14 @@ class ReservationsFormType extends AbstractType
             ->add('message',TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'])
             ->add('user',EntityType::class,[
                 'class'=> User:: class,
-                'choice_label' => function($user) {
-                return $user->getLastname() . " " . $user->getfirstname() . "/ Email: " . $user->getEmail() . "/ Tél: " . $user->getphoneNumber();
+                'choice_label' => function(User $user) {
+                return $user->getLastname() . '_' . $user->getFirstName() . ' / ' . $user->getEmail() . '_' .$user->getPhoneNumber();
                 },
-                'label' => 'Clients']);
+                 'query_builder' => function(EntityRepository $entityRepository){
+                  return $entityRepository->createQueryBuilder('u')
+                      ->orderBy('u.lastName', 'ASC');
+                 },
+                'label' => 'Clients : ']);
 
     }
 
