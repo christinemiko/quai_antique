@@ -15,6 +15,32 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class ReservationController extends AbstractController
 {
+    #[Route('/ajax-events-resa-date/{date}')]
+    public function ajaxEventsResaDate($date){
+
+        $events = [
+
+            [
+                'title'=>'resa',
+                'start'=>'2011-04-04 11:00:00',
+                'end'=>'2011-04-04 12:00:00'
+            ],
+            [
+                'title'=>'resa',
+                'start'=>'2011-04-04 12:00:00',
+                'end'=>'2011-04-04 13:00:00'
+            ],
+            [
+            'title'=>'resa',
+            'start'=>'2011-04-04 17:00:00',
+            'end'=>'2011-04-04 19:00:00'
+            ]
+
+        ];
+
+        return $this->json( $events );
+    }
+
     #[Route('/reservation', name: 'app_reservation')]
     public function index(Request $request,EntityManagerInterface $entityManager,AppLoginAuthenticator $authenticator, HourRepository $repository): Response
     {
