@@ -20,14 +20,15 @@
                      {{ form_start(form) }}
                      <fieldset>
 
+                         {{ form_row(form.availablePlaces) }}
+
                          <div class="row  mt-4 mb-4">
-                         {{ form_row(form.dateReservation) }}
+                             {{ form_row(form.dateReservation) }}
                          </div>
 
                          <div class="row  mt-4 mb-4 flatime">
                          {{ form_row(form.hourReservation) }}
                          </div>
-                         {{ form_row(form.hourReservation) }}
 
                          <div class="row  mt-4 mb-4">
                          {{ form_row(form.numberPerson) }}
@@ -78,7 +79,31 @@
 
             </script>
 
-         {% endblock %}
+            <script>
+            <!--  CHECK AVAILABLE PLACE -->
+            const dateField = document.getElementById('reservation_date');
+            const timeField = document.getElementById('hourReservation');
+            const availablePlacesField = document.getElementById('reservation_availablePlaces');
+
+            function checkAvailability() {
+            const date = dateField.value;
+            const time = timeField.value;
+            const url = '{{ path('availability') }}?date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time);
+
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+
+                availablePlacesField.value = data.availablePlaces;
+            });
+            }
+
+            dateField.addEventListener('change', checkAvailability);
+            timeField.addEventListener('change', checkAvailability);
+
+            </script>
+
+        {% endblock %}
      <!-- RESERVATION PAGE END -->
 
  {% endblock %}

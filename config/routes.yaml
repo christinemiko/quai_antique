@@ -222,3 +222,7 @@ editproductmenus:
 deleteproductmenus:
     path: /admin/deleteproductmenus/{id}
     controller: App\Controller\MenusController::deleteproductmenus
+
+availability:
+    path: /availability
+    controller: App\Controller\AvailabilityController::availability

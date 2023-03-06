@@ -55,7 +55,6 @@ class ReservationsController extends AbstractController
             $reservations = $form->getData();
             $entityManager->persist($reservations);
             $entityManager->flush();
-
             return $this->redirectToRoute('reservations');
         }
 
