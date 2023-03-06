@@ -3,7 +3,8 @@
  {% block title %}Créer une Réservation{% endblock %}
 
  {% block body %}
-
+     <!-- FLATPICKR CDN -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
      <!-- RESERVATION PAGE START -->
      <main class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
 
@@ -18,13 +19,26 @@
                  <div class="col mt-5">
                      {{ form_start(form) }}
                      <fieldset>
-                         {{ form_row(form.dateReservation) }}
-                         {{ form_row(form.hourReservation) }}
-                         {{ form_row(form.numberPerson) }}
-                         {{ form_row(form.message) }}
 
-                         <div class="row  mt-4 mb-3">
-                             <div class="col col-md-6 text-dark">
+                         <div class="row  mt-4 mb-4">
+                         {{ form_row(form.dateReservation) }}
+                         </div>
+
+                         <div class="row  mt-4 mb-4 flatime">
+                         {{ form_row(form.hourReservation) }}
+                         </div>
+                         {{ form_row(form.hourReservation) }}
+
+                         <div class="row  mt-4 mb-4">
+                         {{ form_row(form.numberPerson) }}
+                         </div>
+
+                         <div class="row  mt-4 mb-4">
+                         {{ form_row(form.message) }}
+                         </div>
+
+                         <div class="row  mt-4 mb-4">
+                             <div class="col col-md-6 text-dark ">
                                  {{ form_row(form.user) }}
                              </div>
                          </div>
@@ -36,10 +50,36 @@
                          {{ form_end(form) }}
                      </div>
                  </div>
-
              </div>
          </section>
-
      </main>
+        {% block javascripts %}
+     <!-- FLATPICKR   CDN -->
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+
+
+            <script>
+                flatpickr('.flatpickr-date', {
+                    dateFormat: 'd-m-Y',
+                    locale: 'fr',
+                    disableMobile: true,
+                    defaultDate: 'today',
+                    minDate: 'today',
+                    altInput: true,
+                    altFormat: 'd M Y',
+                    disable: [
+                        function(date) {
+                            return (date.getDay() === 0); // 0 = dimanche
+                        }
+                    ],
+
+                });
+
+            </script>
+
+         {% endblock %}
      <!-- RESERVATION PAGE END -->
+
  {% endblock %}
+

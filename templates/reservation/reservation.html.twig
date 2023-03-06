@@ -4,6 +4,9 @@
 
  {% block body %}
 
+     <!-- FLATPICKR CDN -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
      <!-- RESERVATION PAGE START -->
      <main class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
 
@@ -31,18 +34,33 @@
                  </div>
              </div>
          </section>
-
      </main>
      <!-- RESERVATION PAGE END -->
- {% endblock %}
 
- {% block custom_javascripts %}
-     <script>
-         // addEventListener pour ecouter des events
-         fetch('/check-availibility')
-             .then((response) => response.json())
-             .then((data) => {
-                 console.log(data)
-             });
-     </script>
+  {% block javascripts %}
+      <!-- FLATPICKR   CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+
+
+      <script>
+          flatpickr('.flatpickr-date', {
+              dateFormat: 'd-m-Y',
+              locale: 'fr',
+              disableMobile: true,
+              defaultDate: 'today',
+              minDate: 'today',
+              altInput: true,
+              altFormat: 'd M Y',
+              disable: [
+                  function(date) {
+                      return (date.getDay() === 0); // 0 = dimanche
+                  }
+              ],
+
+          });
+
+      </script>
+       {% endblock %}
+
  {% endblock %}
