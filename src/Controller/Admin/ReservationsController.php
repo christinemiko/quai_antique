@@ -32,7 +32,7 @@ class ReservationsController extends AbstractController
         dump($reservationsTest->getUser());
 
         $reservations = $paginator->paginate(
-            $reservationRepository->findBy([], ['dateReservation' => 'ASC']),
+            $reservationRepository->findBy([], ['dateReservation' => 'ASC', 'hourReservation' =>'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
@@ -47,8 +47,13 @@ class ReservationsController extends AbstractController
     #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
     public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $numberPerson = $reservationRepository->findNumberPerson('2023-03-08', ' 12:00:00');
 
+         $totalPlaces = 46;
+         $availablePlace = $totalPlaces - $numberPerson[0][1];
+
+
+        $hourFixtures = $hourRepository->find(33);
         $reservations = new Reservation ();
 
         $form = $this->createForm(ReservationsFormType::class, $reservations);
@@ -100,15 +105,15 @@ class ReservationsController extends AbstractController
    }
 
 
-     #[Route('/checkAvailability', name: 'app_checkavailability')]
-    public function checkAvailability( ReservationRepository $reservationRepository): JsonResponse
-   {
-      $reservations = $reservationRepository->findAll();
-      $arrayOfReservations = [];
-      foreach ($reservations as $reservation) {
-        $arrayOfReservations[] = $reservation->toArray();
-      }
-      return $this->json($arrayOfReservations);
+    // #[Route('/checkAvailability', name: 'app_checkavailability')]
+    //public function checkAvailability( ReservationRepository $reservationRepository): Response
+     //{
+        // $placeReserved = $reservationRepository->findNumberPerson('2023-03-08', ' 12:00:00');
 
-   }
+         //$totalPlaces = 46;
+         //$availablePlace = $totalPlaces - $placeReserved;
+        // return $this->$availablePlace;
+
+       //}
+
 }

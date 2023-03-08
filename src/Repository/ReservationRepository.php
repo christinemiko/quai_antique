@@ -39,6 +39,25 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findNumberPerson($dateReservation, $hourReservation){
+
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+                  'SELECT SUM(r.numberPerson)
+                        FROM App\Entity\Reservation r
+                        WHERE r.dateReservation = :dateReservation
+                        AND r.hourReservation = :hourReservation')
+
+                 ->setParameter(':dateReservation', $dateReservation)
+                 ->setParameter(':hourReservation', $hourReservation);
+
+                 return $query->getResult();
+    }
+
+
+
+}
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
 //     */
@@ -63,4 +82,4 @@ class ReservationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

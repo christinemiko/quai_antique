@@ -96,12 +96,5 @@ class Reservation
         return $this;
     }
 
-    public function toArray() {
-        return [
-            'id' => $this->getId(),
-            'dateReservation' => $this->getDateReservation(),
-            'hourReservation' => $this->getHourReservation(),
-            'numberPerson' => $this->getNumberPerson(),
-        ];
-    }
+
 }

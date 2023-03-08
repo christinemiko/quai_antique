@@ -45,7 +45,7 @@
                 {% for reservations in reservations %}
                 <tr>
                     <td class="text-center">{{ reservations.id }}</td>
-                    <td class="text-center">{{ reservations.dateReservation|date("d/m/yy") }}</td>
+                    <td class="text-center">{{ reservations.dateReservation|date("d/m/y") }}</td>
                     <td class="text-center">{{ reservations.hourReservation|date('H:i:s') }}</td>
                     <td class="text-center">{{ reservations.numberPerson }}</td>
                     <td class="text-center">{{ reservations.message }}</td>

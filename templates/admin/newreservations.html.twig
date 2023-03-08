@@ -23,15 +23,15 @@
 
                         <div class="reservations"></div>
 
-                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-dateReservation">
+                         <a  class=" mt-4 mb-4 text-dark js-dateReservation">
                              {{ form_row(form.dateReservation) }}
                          </a>
 
-                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-hourReservation">
+                         <a  class=" mt-4 mb-4 text-dark js-hourReservation">
                          {{ form_row(form.hourReservation) }}
                          </a>
 
-                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-numberPerson">
+                         <a  class=" mt-4 mb-4 text-dark js-numberPerson">
                          {{ form_row(form.numberPerson) }}
                          </a>
 
@@ -78,34 +78,27 @@
 
             </script>
 
-            <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
             <script>
 
-           window.addEventListener("load", event => {
-               document.querySelector("a.js-reservations").addEventListener("click", getReservations);
-           })
-           function getReservations(event){
-               event.preventDefault();
-               axios.get(this.href).then(response => {
-                   const reservations = document.querySelector("div.reservations");
-                   if(this.classList.contains("btn-primary")){
-                       response.data.forEach( reservation =>{
-                           const node = document.createElement("li");
-                           node.textContent = reservation.numberPerson;
-                           reservations.appendChild(node);
-                       });
-                       this.classList.replace("btn-primary", "btn-danger");
-                       this.textContent = "Masquer le nombre de personnes de reservations";
-                   } else {
-                       reservations.innerHTML = "";
-                       this.classList.replace("btn-danger", "btn-primary");
-                       this.textContent = "Afficher le nombre de personnes total des reservations";
-                   }
-               }).catch(error => {
-                   console.error(error);
-                   window.alert("Une erreur s'est produite.");
-               });
-           }
+         //  window.addEventListener("load", event => {
+         //      document.querySelector("a.js-dateReservation").addEventListener("click", getAvailablePlaces);
+         //      document.querySelector("a.js-hourReservation").addEventListener("click", getAvailablePlaces);
+         //  })
+         //  function getAvailablePlaces(event){
+          //     event.preventDefault();
+         //      axios.get(this.href).then(response => {
+         //          const numberPerson = document.querySelector("div.reservations");
+
+         //              response.data.( numberPerson =>{
+         //                  const node = document.createElement("li");
+         //                  node.textContent = numberPerson;
+          //                 numberPerson.appendChild(node);
+         //              });
+         //          .catch(error => {
+          //         console.error(error);
+         //          window.alert("Une erreur s'est produite.");
+          //     });
+         //  }
             </script>
         {% endblock %}
      <!-- RESERVATION PAGE END -->
