@@ -35,10 +35,6 @@ inscription:
     controller: App\Controller\RegistrationController::inscription
 
 
-reset-password:
-    path: /reset-password
-    controller: App\Controller\ResetPasswordController::reset-password
-
 instagram:
     path: /instagram
     controller: App\Controller\HomeController::instagram

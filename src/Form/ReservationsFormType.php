@@ -46,7 +46,6 @@ class ReservationsFormType extends AbstractType
                 'format' => 'dd-MM-yyyy',
             ])
 
-            ->add('availablePlaces', NumberType::class, ['mapped' => false , 'label' => 'Places disponibles : '])
             ->add('numberPerson', NumberType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nombre de Personnes'])
             ->add('message',TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Allergies/ Sinon Mentionnez: Pas dallergies'])
             ->add('user',EntityType::class,[

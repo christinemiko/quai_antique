@@ -20,19 +20,20 @@
                      {{ form_start(form) }}
                      <fieldset>
 
-                         {{ form_row(form.availablePlaces) }}
 
-                         <div class="row  mt-4 mb-4">
+                        <div class="reservations"></div>
+
+                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-dateReservation">
                              {{ form_row(form.dateReservation) }}
-                         </div>
+                         </a>
 
-                         <div class="row  mt-4 mb-4 flatime">
+                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-hourReservation">
                          {{ form_row(form.hourReservation) }}
-                         </div>
+                         </a>
 
-                         <div class="row  mt-4 mb-4">
+                         <a href="/checkAvailability" class=" mt-4 mb-4 text-dark js-numberPerson">
                          {{ form_row(form.numberPerson) }}
-                         </div>
+                         </a>
 
                          <div class="row  mt-4 mb-4">
                          {{ form_row(form.message) }}
@@ -58,8 +59,6 @@
      <!-- FLATPICKR   CDN -->
             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
             <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-
-
             <script>
                 flatpickr('.flatpickr-date', {
                     dateFormat: 'd-m-Y',
@@ -79,30 +78,35 @@
 
             </script>
 
+            <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
             <script>
-            <!--  CHECK AVAILABLE PLACE -->
-            const dateField = document.getElementById('reservation_date');
-            const timeField = document.getElementById('hourReservation');
-            const availablePlacesField = document.getElementById('reservation_availablePlaces');
 
-            function checkAvailability() {
-            const date = dateField.value;
-            const time = timeField.value;
-            const url = '{{ path('availability') }}?date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time);
-
-            fetch(url)
-            .then(response => response.json())
-            .then(data => {
-
-                availablePlacesField.value = data.availablePlaces;
-            });
-            }
-
-            dateField.addEventListener('change', checkAvailability);
-            timeField.addEventListener('change', checkAvailability);
-
+           window.addEventListener("load", event => {
+               document.querySelector("a.js-reservations").addEventListener("click", getReservations);
+           })
+           function getReservations(event){
+               event.preventDefault();
+               axios.get(this.href).then(response => {
+                   const reservations = document.querySelector("div.reservations");
+                   if(this.classList.contains("btn-primary")){
+                       response.data.forEach( reservation =>{
+                           const node = document.createElement("li");
+                           node.textContent = reservation.numberPerson;
+                           reservations.appendChild(node);
+                       });
+                       this.classList.replace("btn-primary", "btn-danger");
+                       this.textContent = "Masquer le nombre de personnes de reservations";
+                   } else {
+                       reservations.innerHTML = "";
+                       this.classList.replace("btn-danger", "btn-primary");
+                       this.textContent = "Afficher le nombre de personnes total des reservations";
+                   }
+               }).catch(error => {
+                   console.error(error);
+                   window.alert("Une erreur s'est produite.");
+               });
+           }
             </script>
-
         {% endblock %}
      <!-- RESERVATION PAGE END -->
 

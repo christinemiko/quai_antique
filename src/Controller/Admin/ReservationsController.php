@@ -10,9 +10,11 @@ use App\Repository\HourRepository;
 use App\Repository\MenuRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,16 +23,16 @@ class ReservationsController extends AbstractController
 {
 
     #[Route('/admin/reservations', name: 'app_admin_reservations')]
-    public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
+    public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
-        $reservations = $reservationRepository->findBy([],['dateReservation' => 'ASC']);
+        $reservations = $reservationRepository->findBy([], ['dateReservation' => 'ASC']);
 
-        $reservationsTest =  $reservations[0];
-        dump( $reservationsTest->getUser());
+        $reservationsTest = $reservations[0];
+        dump($reservationsTest->getUser());
 
         $reservations = $paginator->paginate(
-            $reservationRepository->findBy([],['dateReservation' => 'ASC']),
+            $reservationRepository->findBy([], ['dateReservation' => 'ASC']),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
@@ -43,15 +45,16 @@ class ReservationsController extends AbstractController
 
 
     #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
-    public function newReservations(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository):Response
+    public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
+
         $reservations = new Reservation ();
 
         $form = $this->createForm(ReservationsFormType::class, $reservations);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $reservations = $form->getData();
             $entityManager->persist($reservations);
             $entityManager->flush();
@@ -67,14 +70,14 @@ class ReservationsController extends AbstractController
     }
 
     #[Route('/admin/editreservations/{id}', name: 'app_admin_editreservations', methods: ['GET', 'POST'])]
-    public function editReservations(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,ReservationRepository $reservationRepository,int $id): Response
+    public function editReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
 
         $reservations = $reservationRepository->findOneBy(["id" => $id]);
-        $form = $this->createForm(ReservationsFormType::class,$reservations);
+        $form = $this->createForm(ReservationsFormType::class, $reservations);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($reservations);
             $entityManager->flush();
             return $this->redirectToRoute('reservations');
@@ -87,13 +90,25 @@ class ReservationsController extends AbstractController
         ]);
     }
 
-   #[Route('/admin/deletereservations/{id}', name: 'app_admin_deletereservations', methods: ['GET'])]
-   public function deleteMenus( EntityManagerInterface $entityManager, Reservation $reservations): Response
-   {
-       $entityManager->remove($reservations);
-       $entityManager->flush();
+    #[Route('/admin/deletereservations/{id}', name: 'app_admin_deletereservations', methods: ['GET'])]
+    public function deleteMenus(Request $request, EntityManagerInterface $entityManager, Reservation $reservations): Response
+    {
+        $entityManager->remove($reservations);
+        $entityManager->flush();
 
        return $this->redirectToRoute("reservations");
    }
-}
 
+
+     #[Route('/checkAvailability', name: 'app_checkavailability')]
+    public function checkAvailability( ReservationRepository $reservationRepository): JsonResponse
+   {
+      $reservations = $reservationRepository->findAll();
+      $arrayOfReservations = [];
+      foreach ($reservations as $reservation) {
+        $arrayOfReservations[] = $reservation->toArray();
+      }
+      return $this->json($arrayOfReservations);
+
+   }
+}
