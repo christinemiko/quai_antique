@@ -17,23 +17,24 @@
          <section class="container">
              <div class="row">
                  <div class="col mt-5">
-                     {{ form_start(form) }}
+                     {{ form_start(form ) }}
                      <fieldset>
 
 
-                        <div class="reservations"></div>
+                         <span>Places disponibles : </span><span id="available-places">{{ availablePlace }}</span>
 
-                         <a  class=" mt-4 mb-4 text-dark js-dateReservation">
+
+                         <a class="row  mt-4 mb-4">
                              {{ form_row(form.dateReservation) }}
                          </a>
 
-                         <a  class=" mt-4 mb-4 text-dark js-hourReservation">
-                         {{ form_row(form.hourReservation) }}
+                         <a class="row  mt-4 mb-4">
+                             {{ form_row(form.hourReservation) }}
                          </a>
 
-                         <a  class=" mt-4 mb-4 text-dark js-numberPerson">
+                         <div class="row  mt-4 mb-4">
                          {{ form_row(form.numberPerson) }}
-                         </a>
+                         </div>
 
                          <div class="row  mt-4 mb-4">
                          {{ form_row(form.message) }}
@@ -55,53 +56,64 @@
              </div>
          </section>
      </main>
-        {% block javascripts %}
-     <!-- FLATPICKR   CDN -->
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-            <script>
-                flatpickr('.flatpickr-date', {
-                    dateFormat: 'd-m-Y',
-                    locale: 'fr',
-                    disableMobile: true,
-                    defaultDate: 'today',
-                    minDate: 'today',
-                    altInput: true,
-                    altFormat: 'd M Y',
-                    disable: [
-                        function(date) {
-                            return (date.getDay() === 0); // 0 = dimanche
-                        }
-                    ],
 
-                });
-
-            </script>
-
-            <script>
-
-         //  window.addEventListener("load", event => {
-         //      document.querySelector("a.js-dateReservation").addEventListener("click", getAvailablePlaces);
-         //      document.querySelector("a.js-hourReservation").addEventListener("click", getAvailablePlaces);
-         //  })
-         //  function getAvailablePlaces(event){
-          //     event.preventDefault();
-         //      axios.get(this.href).then(response => {
-         //          const numberPerson = document.querySelector("div.reservations");
-
-         //              response.data.( numberPerson =>{
-         //                  const node = document.createElement("li");
-         //                  node.textContent = numberPerson;
-          //                 numberPerson.appendChild(node);
-         //              });
-         //          .catch(error => {
-          //         console.error(error);
-         //          window.alert("Une erreur s'est produite.");
-          //     });
-         //  }
-            </script>
-        {% endblock %}
      <!-- RESERVATION PAGE END -->
 
  {% endblock %}
+
+{% block custom_javascripts %}
+    <!-- FLATPICKR   CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script>
+        flatpickr('.flatpickr-date', {
+            dateFormat: 'Y-m-d',
+            locale: 'fr',
+            disableMobile: true,
+            defaultDate: 'today',
+            minDate: 'today',
+            altInput: true,
+            altFormat: 'd M Y',
+            disable: [
+                function(date) {
+                    return (date.getDay() === 0); // 0 = dimanche
+                }
+            ],
+
+        });
+
+    </script>
+    <script>
+
+
+        function checkAvailibility() {
+            let date = document.querySelector('#reservations_form_dateReservation').value;
+            let time = document.querySelector('#reservations_form_hourReservation_hour').value;
+            console.log(date)
+
+            fetch(`/checkAvailability?date=${date}&time=${time}:00:00`)
+                .then(response => response.json())
+                .then(data => {
+                    // afficher les places disponibles dans l'élément HTML approprié
+                    let availablePlacesElement = document.querySelector('#available-places');
+                    availablePlacesElement.innerText = data.availablePlace;
+                });
+        }
+
+        const dateInput = document.querySelector('#reservations_form_dateReservation');
+        const timeInput = document.querySelector('#reservations_form_hourReservation');
+
+        dateInput.addEventListener('change', () => {
+            checkAvailibility();
+        });
+
+        timeInput.addEventListener('change', () => {
+            checkAvailibility();
+        });
+
+
+
+    </script>
+
+{% endblock %}
 

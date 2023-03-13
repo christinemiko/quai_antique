@@ -36,14 +36,9 @@ class ReservationsFormType extends AbstractType
                 'html5' => false,
                 'label' => 'Sélectionner une date',
                 'attr' => [
-                    'class' => 'flatpickr-date',
-                    'data-disable-mobile' => true,
-                    'data-default-date' => 'today',
-                    'data-alt-input' => true,
-                    'data-alt-format' => 'd M Y',
-                    'data-date-format' => 'd-m-Y',
+                    'class' => 'flatpickr-date'
                 ],
-                'format' => 'dd-MM-yyyy',
+                'format' => 'yyyy-MM-dd',
             ])
 
             ->add('numberPerson', NumberType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nombre de Personnes'])

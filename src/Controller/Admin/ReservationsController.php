@@ -13,6 +13,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationsController extends AbstractController
 {
+    private ReservationRepository $reservationRepository;
+
+    function __construct(ReservationRepository $reservationRepository)
+    {
+        $this->reservationRepository = $reservationRepository;
+    }
 
     #[Route('/admin/reservations', name: 'app_admin_reservations')]
     public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
@@ -43,16 +50,17 @@ class ReservationsController extends AbstractController
         ]);
     }
 
+    public function getAvailablePlace($dateReservation, $hourReservation)
+    {
+        return 46 - $this->reservationRepository->findNumberPerson($dateReservation, $hourReservation);
+    }
 
     #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
-    public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository): Response
+    public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $numberPerson = $reservationRepository->findNumberPerson('2023-03-08', ' 12:00:00');
-
-         $totalPlaces = 46;
-         $availablePlace = $totalPlaces - $numberPerson[0][1];
-
-
+        dump($this->getAvailablePlace("2023-03-13", '12:00:00'));
+        $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
+        // $availablePlace = $this->checkAvailability($request, $reservationRepository);
         $hourFixtures = $hourRepository->find(33);
         $reservations = new Reservation ();
 
@@ -61,6 +69,7 @@ class ReservationsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $reservations = $form->getData();
+
             $entityManager->persist($reservations);
             $entityManager->flush();
             return $this->redirectToRoute('reservations');
@@ -69,6 +78,7 @@ class ReservationsController extends AbstractController
         return $this->render('admin/newreservations.html.twig', [
 
             'hourFixtures' => $hourFixtures,
+            'availablePlace' => $availablePlace,
             'form' => $form->createView()
 
         ]);
@@ -105,15 +115,15 @@ class ReservationsController extends AbstractController
    }
 
 
-    // #[Route('/checkAvailability', name: 'app_checkavailability')]
-    //public function checkAvailability( ReservationRepository $reservationRepository): Response
-     //{
-        // $placeReserved = $reservationRepository->findNumberPerson('2023-03-08', ' 12:00:00');
+     #[Route('/checkAvailability', name: 'app_checkavailability')]
+       public function checkAvailability( Request $request): Response
+       {
 
-         //$totalPlaces = 46;
-         //$availablePlace = $totalPlaces - $placeReserved;
-        // return $this->$availablePlace;
+           $dateReservation = $request->query->get('date');
+           $hourReservation = $request->query->get('time');
+           dump($this->getAvailablePlace($dateReservation, $hourReservation));
+         return $this->json(['availablePlace' => $this->getAvailablePlace($dateReservation, $hourReservation)]);
 
-       //}
+       }
 
 }
