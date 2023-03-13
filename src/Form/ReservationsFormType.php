@@ -46,7 +46,7 @@ class ReservationsFormType extends AbstractType
             ->add('user',EntityType::class,[
                 'class'=> User:: class,
                 'choice_label' => function(User $user) {
-                return $user->getLastname() . '_' . $user->getFirstName() . ' / ' . $user->getEmail() . '_' .$user->getPhoneNumber();
+                return $user->getLastname() . '_' . $user->getFirstName() . ' / ' . $user->getEmail() . '_' .$user->getPhoneNumber() . '_' . $user->getAllergie();
                 },
                  'query_builder' => function(EntityRepository $entityRepository){
                   return $entityRepository->createQueryBuilder('u')

@@ -206,7 +206,6 @@ deleteproducts:
     path: /admin/deleteproducts/{id}
     controller: App\Controller\ProductsController::deleteproducts
 
-
 newproductmenus:
     path: /admin/newproductmenus
     controller: App\Controller\MenusController::newproductmenus

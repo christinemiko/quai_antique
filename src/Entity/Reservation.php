@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator as MyConstraint;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -18,6 +19,7 @@ class Reservation
     private ?\DateTimeInterface $hourReservation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[MyConstraint\IsFull]
     private ?\DateTimeInterface $dateReservation = null;
 
     #[ORM\Column(type:"integer")]

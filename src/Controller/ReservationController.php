@@ -5,6 +5,7 @@ use App\Entity\User;
 use App\Entity\Reservation;
 use App\Form\ReservationFormType;
 use App\Repository\HourRepository;
+use App\Repository\ReservationRepository;
 use App\Security\AppLoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,20 +16,36 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class ReservationController extends AbstractController
 {
+    private ReservationRepository $reservationRepository;
 
-    #[Route('/reservation', name: 'app_reservation')]
+    function __construct(ReservationRepository $reservationRepository)
+    {
+        $this->reservationRepository = $reservationRepository;
+    }
+
+    public function getAvailablePlace($dateReservation, $hourReservation)
+    {
+        return 46 - $this->reservationRepository->findNumberPerson($dateReservation, $hourReservation);
+    }
+
+    #[Route('/reservation', name: 'app_reservation', methods: ['GET', 'POST'])]
     public function index(Request $request,EntityManagerInterface $entityManager,AppLoginAuthenticator $authenticator, HourRepository $repository): Response
     {
+        $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
+
         $hourFixtures = $repository->find(33);
+
 
         $reservation = new Reservation();
 
         $user = $this->getUser();
+        $allergie = $user->getAllergie();
         if (!$user){
            return $this->redirectToRoute('askreservation');
         }
-
+        $reservation->setMessage($user->getAllergie());
         $reservation->setUser($this->getUser());
+
 
 
         $form = $this->createForm(ReservationFormType::class, $reservation);
@@ -44,6 +61,7 @@ class ReservationController extends AbstractController
 
         return $this->render('reservation/reservation.html.twig', [
             'hourFixtures' => $hourFixtures,
+            'availablePlace' => $availablePlace,
             'reservationForm' => $form->createView(),
         ]);
     }
@@ -53,4 +71,6 @@ class ReservationController extends AbstractController
     {
         return $this->json(["available" => true]);
     }
+
+
 }

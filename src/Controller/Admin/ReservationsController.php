@@ -58,9 +58,8 @@ class ReservationsController extends AbstractController
     #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
     public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        dump($this->getAvailablePlace("2023-03-13", '12:00:00'));
+
         $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
-        // $availablePlace = $this->checkAvailability($request, $reservationRepository);
         $hourFixtures = $hourRepository->find(33);
         $reservations = new Reservation ();
 

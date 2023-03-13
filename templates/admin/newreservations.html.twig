@@ -21,14 +21,15 @@
                      <fieldset>
 
 
-                         <span>Places disponibles : </span><span id="available-places">{{ availablePlace }}</span>
 
+                         <span>Places disponibles : </span><span id="available-places" class="text-danger">{{ availablePlace }}</span>
+                         {{ form_errors(form) }}
 
-                         <a class="row  mt-4 mb-4">
+                         <a class="row  mt-4 mb-4 text-dark">
                              {{ form_row(form.dateReservation) }}
                          </a>
 
-                         <a class="row  mt-4 mb-4">
+                         <a class="row  mt-4 mb-4 text-dark">
                              {{ form_row(form.hourReservation) }}
                          </a>
 

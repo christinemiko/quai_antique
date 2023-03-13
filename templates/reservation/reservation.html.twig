@@ -18,13 +18,27 @@
 
          <section class="container">
              <div class="row">
-                 <div class="col mt-5">
+                 <div class="col mt-2">
                    {{ form_start(reservationForm) }}
                      <fieldset>
-                          {{ form_row(reservationForm.dateReservation) }}
+                         <span >Places disponibles : </span><span id="available-places" class="text-danger mb-2">{{ availablePlace }}</span>
+
+                         <a class="row  mt-4 mb-4 text-dark">
+                         {{ form_row(reservationForm.dateReservation) }}
+                         </a>
+
+                         <a class="row  mt-4 mb-4 text-dark">
                           {{ form_row(reservationForm.hourReservation) }}
+                         </a>
+
+                         <div class="row  mt-4 mb-4">
                           {{ form_row(reservationForm.numberPerson) }}
+                         </div>
+
+                         <div class="row  mt-4 mb-4">
                           {{ form_row(reservationForm.message) }}
+                         </div>
+
                      </fieldset>
 
                      <div class="text-center mb-3">
@@ -36,31 +50,61 @@
          </section>
      </main>
      <!-- RESERVATION PAGE END -->
-
-  {% block javascripts %}
-      <!-- FLATPICKR   CDN -->
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-
-
-      <script>
-          flatpickr('.flatpickr-date', {
-              dateFormat: 'd-m-Y',
-              locale: 'fr',
-              disableMobile: true,
-              defaultDate: 'today',
-              minDate: 'today',
-              altInput: true,
-              altFormat: 'd M Y',
-              disable: [
-                  function(date) {
-                      return (date.getDay() === 0); // 0 = dimanche
-                  }
-              ],
-
-          });
-
-      </script>
-       {% endblock %}
-
  {% endblock %}
+
+{% block custom_javascripts %}
+    <!-- FLATPICKR   CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script>
+        flatpickr('.flatpickr-date', {
+            dateFormat: 'Y-m-d',
+            locale: 'fr',
+            disableMobile: true,
+            defaultDate: 'today',
+            minDate: 'today',
+            altInput: true,
+            altFormat: 'd M Y',
+            disable: [
+                function(date) {
+                    return (date.getDay() === 0); // 0 = dimanche
+                }
+            ],
+
+        });
+
+    </script>
+    <script>
+
+        function checkAvailibility() {
+            let date = document.querySelector('#reservation_form_dateReservation').value;
+            let time = document.querySelector('#reservation_form_hourReservation_hour').value;
+            console.log(date)
+
+            fetch(`/checkAvailability?date=${date}&time=${time}:00:00`)
+                .then(response => response.json())
+                .then(data => {
+                    // afficher les places disponibles dans l'élément HTML approprié
+                    let availablePlacesElement = document.querySelector('#available-places');
+                    availablePlacesElement.innerText = data.availablePlace;
+                });
+        }
+
+        const dateInput = document.querySelector('#reservation_form_dateReservation');
+        const timeInput = document.querySelector('#reservation_form_hourReservation');
+
+        dateInput.addEventListener('change', () => {
+            checkAvailibility();
+        });
+
+        timeInput.addEventListener('change', () => {
+            checkAvailibility();
+        });
+
+
+
+    </script>
+
+{% endblock %}
+
+
