@@ -218,3 +218,6 @@ deleteproductmenus:
     path: /admin/deleteproductmenus/{id}
     controller: App\Controller\MenusController::deleteproductmenus
 
+confirmreservation:
+    path: /confirmreservation
+    controller: App\Controller\ReservationController::confirmreservation

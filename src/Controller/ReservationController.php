@@ -59,6 +59,7 @@ class ReservationController extends AbstractController
             $reservation = $form->getData();
             $entityManager->persist($reservation);
             $entityManager->flush();
+            return $this->redirectToRoute('confirmreservation');
         }
 
         return $this->render('reservation/reservation.html.twig', [
@@ -74,7 +75,17 @@ class ReservationController extends AbstractController
         return $this->json(["available" => true]);
     }
 
+    #[Route('confirmreservation', name: 'app_confirmreservation')]
+    public function confirmreservation( HourRepository $hourRepository) : Response
+    {
+        $hourFixtures =  $hourRepository->find(33);
 
+        return $this->render('confirmreservation.html.twig', [
+            'hourFixtures' => $hourFixtures,
+
+
+        ]);
+    }
 
 
 }

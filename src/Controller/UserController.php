@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 use App\Entity\User;
+use App\Entity\Reservation;
 use App\Repository\HourRepository;
 use App\Repository\PictureRepository;
+use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,4 +64,6 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("accueil");
     }
+
+
 }
