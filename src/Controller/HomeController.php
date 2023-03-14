@@ -16,13 +16,13 @@
      {
          $hourFixtures = $repository->find(33);
          $picture = $pictureRepository->find(19);
-         dump( $picture->getProduct());
+         //dump( $picture->getProduct());
 
          $picture2 = $pictureRepository->find(20);
-         dump( $picture2->getProduct());
+         //dump( $picture2->getProduct());
 
          $picture3 = $pictureRepository->find(21);
-         dump( $picture3->getProduct());
+         //dump( $picture3->getProduct());
 
          return $this->render( 'homepage.html.twig', [
              'hourFixtures' => $hourFixtures,
@@ -38,7 +38,7 @@
      {
          $hourFixtures = $repository->find(33);
          $picture = $pictureRepository->find(22);
-         dump( $picture->getProduct());
+         //dump( $picture->getProduct());
 
          return $this->render('history.html.twig', [
              'hourFixtures' => $hourFixtures,

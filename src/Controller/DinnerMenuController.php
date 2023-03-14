@@ -17,7 +17,7 @@ class DinnerMenuController extends AbstractController
         $hourFixtures = $hourRepository->find(33);
 
         $menu = $menuRepository->find(63);
-        dump($menu->getProductMenus());
+        //dump($menu->getProductMenus());
 
         $productMenus = $repository->findBy(['menu'=> '63', 'category' => '238']);
         $productMenus1 = $repository->findBy(['menu'=> '63', 'category' => '239']);
@@ -25,7 +25,7 @@ class DinnerMenuController extends AbstractController
 
 
         $productMenuTest = $productMenus[0];
-        dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
+        //dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
 
         return $this->render('dinnermenu.html.twig', [
             'productMenus' => $productMenus,

@@ -34,7 +34,7 @@ class PicturesController extends AbstractController
         $pictures = $pictureRepository->findAll();
 
         $picturesTest =  $pictures[0];
-        dump( $picturesTest->getProduct());
+        //dump( $picturesTest->getProduct());
 
         $pictures = $paginator->paginate(
             $pictureRepository->findAll(),
@@ -50,7 +50,7 @@ class PicturesController extends AbstractController
 
     #[Route('/admin/newpictures', name: 'app_admin_newpictures', methods: ['GET', 'POST'])]
     public function newPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,
-                                PictureRepository $pictureRepository, SluggerInterface $slugger, PictureService $pictureService):Response
+                                PictureRepository $pictureRepository, SluggerInterface $slugger):Response
     {
         $hourFixtures = $hourRepository->find(33);
 

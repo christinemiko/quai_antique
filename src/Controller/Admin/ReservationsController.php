@@ -36,7 +36,7 @@ class ReservationsController extends AbstractController
         $reservations = $reservationRepository->findBy([], ['dateReservation' => 'ASC']);
 
         $reservationsTest = $reservations[0];
-        dump($reservationsTest->getUser());
+        //dump($reservationsTest->getUser());
 
         $reservations = $paginator->paginate(
             $reservationRepository->findBy([], ['dateReservation' => 'ASC', 'hourReservation' =>'ASC']),
@@ -120,7 +120,7 @@ class ReservationsController extends AbstractController
 
            $dateReservation = $request->query->get('date');
            $hourReservation = $request->query->get('time');
-           dump($this->getAvailablePlace($dateReservation, $hourReservation));
+           //dump($this->getAvailablePlace($dateReservation, $hourReservation));
          return $this->json(['availablePlace' => $this->getAvailablePlace($dateReservation, $hourReservation)]);
 
        }

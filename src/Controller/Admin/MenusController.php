@@ -29,13 +29,13 @@ class MenusController extends AbstractController
         $hourFixtures = $hourRepository->find(33);
 
         $menu = $menuRepository->find(62);
-        dump($menu->getProductMenus());
+        //dump($menu->getProductMenus());
 
         $productMenus = $repository->findBy([],['menu' => 'ASC']);
 
 
         $productMenuTest = $productMenus[0];
-        dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
+        //dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
 
         $productMenus = $paginator->paginate(
             $repository->findBy([],['category' => 'ASC']),

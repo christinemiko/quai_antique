@@ -16,14 +16,14 @@ class LunchMenuController extends AbstractController
     {
         $hourFixtures = $hourRepository->find(33);
         $menu = $menuRepository->find(62);
-        dump($menu->getProductMenus());
+        //dump($menu->getProductMenus());
 
         $productMenus = $repository->findBy(['menu'=> '62', 'category' => '238']);
         $productMenus1 = $repository->findBy(['menu'=> '62', 'category' => '239']);
         $productMenus2 = $repository->findBy(['menu'=> '62', 'category' => '242']);
 
         $productMenuTest = $productMenus[0];
-        dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
+        //dump($productMenuTest->getProduct()->getCategory()->getNameCategory());
 
         return $this->render('lunchmenu.html.twig', [
             'productMenus' => $productMenus,

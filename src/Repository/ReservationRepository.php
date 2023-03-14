@@ -41,8 +41,8 @@ class ReservationRepository extends ServiceEntityRepository
 
 
     public function findNumberPerson($dateReservation, $hourReservation){
-        dump($dateReservation);
-        dump($hourReservation);
+        //dump($dateReservation);
+        //dump($hourReservation);
 
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(
@@ -53,10 +53,10 @@ class ReservationRepository extends ServiceEntityRepository
 
                  ->setParameter('dateReservation', $dateReservation)
                  ->setParameter('hourReservation', $hourReservation);
-        dump($query->getResult());
+       // dump($query->getResult());
 
-        dump($query->getResult()[0][1]);
-        dump($query->getResult()[0][1] ?: 0);
+       // dump($query->getResult()[0][1]);
+        //dump($query->getResult()[0][1] ?: 0);
 
                  return $query->getResult()[0][1] ?: 0;
     }

@@ -27,7 +27,7 @@ class ProductsController extends AbstractController
         $productsFixtures = $productRepository->findBy([],['category' => 'ASC']);
 
         $productsFixturesTest =  $productsFixtures[0];
-        dump( $productsFixturesTest->getCategory()->getNameCategory());
+        //dump( $productsFixturesTest->getCategory()->getNameCategory());
 
         $productsFixtures = $paginator->paginate(
             $productRepository->findBy([],['category' => 'ASC']),
