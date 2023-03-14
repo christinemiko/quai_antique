@@ -21,6 +21,9 @@
                  <div class="col mt-2">
                    {{ form_start(reservationForm) }}
                      <fieldset>
+                         {% if form_errors(reservationForm) %}
+                             <div class="alert alert-danger">{{ form_errors(reservationForm) }}</div>
+                         {% endif %}
                          <span >Places disponibles : </span><span id="available-places" class="text-danger mb-2">{{ availablePlace }}</span>
 
                          <a class="row  mt-4 mb-4 text-dark">

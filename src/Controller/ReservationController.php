@@ -7,12 +7,18 @@ use App\Form\ReservationFormType;
 use App\Repository\HourRepository;
 use App\Repository\ReservationRepository;
 use App\Security\AppLoginAuthenticator;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use App\Validator\AvailablePlaces;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
+
 
 class ReservationController extends AbstractController
 {
@@ -34,8 +40,6 @@ class ReservationController extends AbstractController
         $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
 
         $hourFixtures = $repository->find(33);
-
-
         $reservation = new Reservation();
 
         $user = $this->getUser();
@@ -46,17 +50,15 @@ class ReservationController extends AbstractController
         $reservation->setMessage($user->getAllergie());
         $reservation->setUser($this->getUser());
 
-
-
         $form = $this->createForm(ReservationFormType::class, $reservation);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $reservation = $form->getData();
-            dump($reservation);
             $entityManager->persist($reservation);
-            //$entityManager->flush();
+            $entityManager->flush();
         }
 
         return $this->render('reservation/reservation.html.twig', [
@@ -71,6 +73,8 @@ class ReservationController extends AbstractController
     {
         return $this->json(["available" => true]);
     }
+
+
 
 
 }
