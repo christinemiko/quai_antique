@@ -28,10 +28,10 @@ Lien TRELLO ,logiciel pour la gestion de ce Projet:
 https://trello.com/b/hmVhvsGL/projet-ecf-quai-antique-christine-chau
 
 Les fichiers de création de la base de données sont dans:
-C:\symfony\project\quai_antique\migrations
+quai_antique\migrations
 
 Les fichiers d'alimentation de la base de données sont dans:
-C:\symfony\project\quai_antique\src\DataFixtures
+quai_antique\src\DataFixtures
 
 La documentation technique ( Diagramme de Classe, Diagramme de séquence, Diagramme de cas d'utilisation, charte graphique) 
 se trouve dans le dossier: "Schéma MCD, Diagramme de Cas utilisation, de Séquence, Charte Graphique"
