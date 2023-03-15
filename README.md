@@ -54,7 +54,7 @@ Pré-requis:  L'installation des logiciels suivants est nécessaire pour le dép
 - Aller sur le lien Github du projet https://github.com/christinemiko/quai_antique
 - Cliquez sur le bouton vert " <> Code "
 - Copiez le lien HTTPS du projet https://github.com/christinemiko/quai_antique.git
-  ![github](public/img/readme.1.PNG)
+  ![github](public/img/readme.1.png)
 
 2. Etape 
  - Aller dans Windows(C:) > symfony 
