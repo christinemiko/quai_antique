@@ -14,6 +14,9 @@ Site réalisé avec les versions:
 - PHP 8.1
 - SQL 10.4.27-MariaDB
 - SYMFONY 6.2
+- JAVASCRIPT
+
+Serveur: gandi
 
 Lien de l'application web en ligne: 
 https://quai-antique.christine-chau-projets.com/
@@ -29,6 +32,14 @@ C:\symfony\project\quai_antique\migrations
 
 Les fichiers d'alimentation de la base de données sont dans:
 C:\symfony\project\quai_antique\src\DataFixtures
+
+La documentation technique ( Diagramme de Classe, Diagramme de séquence, Diagramme de cas d'utilisation, charte graphique) 
+se trouve dans le dossier: "Schéma MCD, Diagramme de Cas utilisation, de Séquence, Charte Graphique"
+
+La documentation maquettes ( Mockup Desktop et Mockup Mobile) 
+se trouve dans le dossier: "Maquette Mockups Mobile & Desktop".
+
+
 
 
 
