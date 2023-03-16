@@ -39,6 +39,8 @@ se trouve dans le dossier: "Schéma MCD, Diagramme de Cas utilisation, de Séque
 La documentation maquettes ( Mockup Desktop et Mockup Mobile) 
 se trouve dans le dossier: "Maquette Mockups Mobile & Desktop".
 
+Le manuel d'utilisation se trouve dans quai_antique/manuel dutilisation quai antique.pdf
+
 
 
 
