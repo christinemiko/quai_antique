@@ -22,7 +22,7 @@ Lien de l'application web en ligne:
 https://quai-antique.christine-chau-projets.com/
 
 Lien du dépôt github:
-https://github.com/christinemiko
+https://github.com/christinemiko/quai_antique
 
 Lien TRELLO ,logiciel pour la gestion de ce Projet:
 https://trello.com/b/hmVhvsGL/projet-ecf-quai-antique-christine-chau
