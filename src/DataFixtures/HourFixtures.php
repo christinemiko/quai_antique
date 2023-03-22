@@ -15,7 +15,7 @@ class HourFixtures extends Fixture
 
         $hour = new Hour ();
         $hour ->setDay('Du Lundi au Samedi');
-        $hour ->setHour('De 11h45 à 14h00 et de 19h00 à 22h00');
+        $hour ->setHourtime('De 11h45 à 14h00 et de 19h00 à 22h00');
         $manager->persist($hour);
         $manager->flush();
 

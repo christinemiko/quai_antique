@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Poppins&display=swap');
 
-html, body, header, main {
-    padding: 0px;
-    margin: 0px;
-    scroll-behavior: smooth;
-}
 
 body, header, main {
     font-family: 'Lora', serif;
