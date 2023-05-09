@@ -26,7 +26,7 @@ use function PHPUnit\Framework\throwException;
 class PicturesController extends AbstractController
 {
 
-    #[Route('/admin/pictures', name: 'app_admin_pictures')]
+    #[Route('/admin/pictures', name: 'pictures')]
     public function showpictures (HourRepository $hourRepository, PictureRepository $pictureRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -48,7 +48,7 @@ class PicturesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/newpictures', name: 'app_admin_newpictures', methods: ['GET', 'POST'])]
+    #[Route('/admin/newpictures', name: 'newpictures', methods: ['GET', 'POST'])]
     public function newPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,
                                 PictureRepository $pictureRepository, SluggerInterface $slugger):Response
     {
@@ -98,7 +98,7 @@ class PicturesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editpictures/{id}', name: 'app_admin_editpictures', methods: ['GET', 'POST'])]
+    #[Route('/admin/editpictures/{id}', name: 'editpictures', methods: ['GET', 'POST'])]
     public function editPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,
          SluggerInterface $slugger,PictureRepository $pictureRepository, int $id): Response
     {
@@ -144,7 +144,7 @@ class PicturesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/deletepictures/{id}', name: 'app_admin_deletepictures', methods: ['GET'])]
+    #[Route('/admin/deletepictures/{id}', name: 'deletepictures', methods: ['GET'])]
     public function deletePictures( EntityManagerInterface $entityManager, Picture $pictures): Response
     {
         $entityManager->remove($pictures);

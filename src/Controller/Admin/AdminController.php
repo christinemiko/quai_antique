@@ -26,7 +26,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/administrators', name: 'app_admin_administrators')]
+    #[Route('/admin/administrators', name: 'administrators')]
     public function findByRole(HourRepository $hourRepository, UserRepository $userRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -39,7 +39,7 @@ class AdminController extends AbstractController
     }
 
 
-    #[Route('/admin/newadministrators', name: 'app_admin_newadministrators')]
+    #[Route('/admin/newadministrators', name: 'newadministrators')]
     public function newAdministrators(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -71,7 +71,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editadministrators/{id}', name: 'app_admin_editadministrators', methods: ['GET', 'POST'])]
+    #[Route('/admin/editadministrators/{id}', name: 'editadministrators', methods: ['GET', 'POST'])]
     public function editAdministrators(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -92,7 +92,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/deleteadministrators/{id}', name: 'app_admin_deleteadministrators', methods: ['GET'])]
+    #[Route('/admin/deleteadministrators/{id}', name: 'deleteadministrators', methods: ['GET'])]
     public function deleteUsers( EntityManagerInterface $entityManager, User $user): Response
     {
         $entityManager->remove($user);

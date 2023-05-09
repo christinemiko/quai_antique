@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MenusController extends AbstractController
 {
 
-    #[Route('/admin/menus', name: 'app_admin_menus')]
+    #[Route('/admin/menus', name: 'menus')]
     public function getProductMenus(ProductMenuRepository $repository, MenuRepository $menuRepository, HourRepository $hourRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -49,7 +49,7 @@ class MenusController extends AbstractController
             'hourFixtures' => $hourFixtures,
         ]);
     }
-    #[Route('/admin/newproductmenus', name: 'app_admin_newproductmenus', methods: ['GET', 'POST'])]
+    #[Route('/admin/newproductmenus', name: 'newproductmenus', methods: ['GET', 'POST'])]
     public function newProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductMenuRepository $productMenuRepository) : Response
 
     {
@@ -75,7 +75,7 @@ class MenusController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editproductmenus/{id}', name: 'app_admin_editproductmenus', methods: ['GET', 'POST'])]
+    #[Route('/admin/editproductmenus/{id}', name: 'editproductmenus', methods: ['GET', 'POST'])]
     public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -99,7 +99,7 @@ class MenusController extends AbstractController
 
         ]);
     }
-    #[Route('/admin/deleteproductmenus/{id}', name: 'app_admin_deleteproductmenus', methods: ['GET'])]
+    #[Route('/admin/deleteproductmenus/{id}', name: 'deleteproductmenus', methods: ['GET'])]
     public function deleteProductMenus( EntityManagerInterface $entityManager, ProductMenu $productMenus): Response
     {
         $entityManager->remove($productMenus);
@@ -109,7 +109,7 @@ class MenusController extends AbstractController
     }
 
 
-    #[Route('/admin/createmenus', name: 'app_admin_createmenus')]
+    #[Route('/admin/createmenus', name: 'createmenus')]
     public function index (HourRepository $hourRepository, MenuRepository $menuRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -127,7 +127,7 @@ class MenusController extends AbstractController
         ]);
     }
 
-   #[Route('/admin/newmenus', name: 'app_admin_newmenus', methods: ['GET', 'POST'])]
+   #[Route('/admin/newmenus', name: 'newmenus', methods: ['GET', 'POST'])]
    public function newMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, MenuRepository $menuRepository):Response
    {
        $hourFixtures = $hourRepository->find(33);
@@ -151,7 +151,7 @@ class MenusController extends AbstractController
        ]);
    }
 
-     #[Route('/admin/editmenus/{id}', name: 'app_admin_editmenus', methods: ['GET', 'POST'])]
+     #[Route('/admin/editmenus/{id}', name: 'editmenus', methods: ['GET', 'POST'])]
      public function editMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,int $id): Response
      {
          $hourFixtures = $hourRepository->find(33);
@@ -174,7 +174,7 @@ class MenusController extends AbstractController
 
      }
 
-    #[Route('/admin/deletemenus/{id}', name: 'app_admin_deletemenus', methods: ['GET'])]
+    #[Route('/admin/deletemenus/{id}', name: 'deletemenus', methods: ['GET'])]
     public function deleteMenus( EntityManagerInterface $entityManager, Menu $menus): Response
     {
         $entityManager->remove($menus);

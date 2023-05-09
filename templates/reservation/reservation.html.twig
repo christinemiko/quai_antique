@@ -3,6 +3,8 @@
  {% block title %}Reservation{% endblock %}
 
  {% block body %}
+     <!-- FLATPICKR CDN -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
      <!-- RESERVATION PAGE START -->
      <main class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
@@ -25,6 +27,7 @@
 
                          <a class="row  mt-4 mb-4 text-dark">
                          {{ form_row(reservationForm.dateReservation) }}
+
                          </a>
 
                          <a class="row  mt-4 mb-4 text-dark">
@@ -53,13 +56,12 @@
  {% endblock %}
 
 {% block custom_javascripts %}
-    <!-- FLATPICKR CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- FLATPICKR   CDN -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
     <script>
+
         flatpickr('.flatpickr-date', {
             dateFormat: 'Y-m-d',
             locale: 'fr',
@@ -74,7 +76,7 @@
                 }
             ],
 
-        });
+          });
 
     </script>
     <script>
@@ -103,8 +105,6 @@
         timeInput.addEventListener('change', () => {
             checkAvailibility();
         });
-
-
 
     </script>
 

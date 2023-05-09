@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/alacarte', name: 'app_product')]
+    #[Route('/alacarte', name: 'alacarte')]
     public function index(ProductRepository $repository, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);

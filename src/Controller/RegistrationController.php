@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_register')]
+    #[Route('/inscription', name: 'inscription')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);

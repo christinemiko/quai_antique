@@ -2,16 +2,11 @@
 
 namespace App\Controller;
 use App\Entity\User;
-use App\Entity\Reservation;
 use App\Repository\HourRepository;
 use App\Repository\PictureRepository;
-use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +34,7 @@ class UserController extends AbstractController
 
         ]);
     }
-    #[Route('/moncompte', name: 'app_moncompte')]
+    #[Route('/moncompte', name: 'moncompte')]
     public function myAccount(HourRepository $repository) : Response
     {
         $hourFixtures = $repository->find(33);
@@ -48,7 +43,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('confirmdeletemoncompte', name: 'app_confirmdeletemoncompte' )]
+    #[Route('confirmdeletemoncompte', name: 'confirmdeletemoncompte' )]
     public function confirm ( UserRepository $userRepository,HourRepository $hourRepository) : Response
     {
         $hourFixtures =  $hourRepository->find(33);
@@ -56,7 +51,7 @@ class UserController extends AbstractController
             'hourFixtures' => $hourFixtures
         ]);
     }
-    #[Route('deletemoncompte/{id}', name: 'app_deletemoncompte', methods: ['GET'])]
+    #[Route('deletemoncompte/{id}', name: 'deletemoncompte', methods: ['GET'])]
     public function delete( EntityManagerInterface $entityManager, User $user) : Response
     {
         $entityManager->remove($user);

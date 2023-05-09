@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductsController extends AbstractController
 {
 
-    #[Route('/admin/products', name: 'app_admin_products')]
+    #[Route('/admin/products', name: 'products')]
     public function getProducts (ProductRepository $productRepository,HourRepository $hourRepository, CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -41,7 +41,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/newproducts', name: 'app_admin_newproducts', methods: ['GET', 'POST'])]
+    #[Route('/admin/newproducts', name: 'newproducts', methods: ['GET', 'POST'])]
     public function new(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator) : Response
 
     {
@@ -64,7 +64,7 @@ class ProductsController extends AbstractController
 
         ]);
     }
-    #[Route('/admin/editproducts/{id}', name: 'app_admin_editproducts', methods: ['GET', 'POST'])]
+    #[Route('/admin/editproducts/{id}', name: 'editproducts', methods: ['GET', 'POST'])]
     public function edit(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository, int $id): response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -85,7 +85,7 @@ class ProductsController extends AbstractController
 
         ]);
     }
-     #[Route('/admin/deleteproducts/{id}', name: 'app_admin_deleteproducts', methods: ['GET'])]
+     #[Route('/admin/deleteproducts/{id}', name: 'deleteproducts', methods: ['GET'])]
      public function delete( EntityManagerInterface $entityManager, Product $product): Response
      {
          $entityManager->remove($product);

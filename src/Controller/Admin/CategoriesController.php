@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoriesController extends AbstractController
 {
 
-    #[Route('/admin/categories', name: 'app_admin_categories')]
+    #[Route('/admin/categories', name: 'categories')]
     public function index (HourRepository $hourRepository, CategoryRepository $categoryRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -35,7 +35,7 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/newcategories', name: 'app_admin_newcategories', methods: ['GET', 'POST'])]
+    #[Route('/admin/newcategories', name: 'newcategories', methods: ['GET', 'POST'])]
     public function newCategories(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -61,7 +61,7 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editcategories/{id}', name: 'app_admin_editcategories', methods: ['GET', 'POST'])]
+    #[Route('/admin/editcategories/{id}', name: 'editcategories', methods: ['GET', 'POST'])]
     public function editCategories(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,CategoryRepository $categoryRepository, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -83,7 +83,7 @@ class CategoriesController extends AbstractController
 
     }
 
-    #[Route('/admin/deletecategories/{id}', name: 'app_admin_deletecategories', methods: ['GET'])]
+    #[Route('/admin/deletecategories/{id}', name: 'deletecategories', methods: ['GET'])]
     public function deleteCategories( EntityManagerInterface $entityManager, Category $category): Response
     {
         $entityManager->remove($category);

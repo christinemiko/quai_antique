@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class UsersController extends AbstractController
 {
 
-    #[Route('/admin/users', name: 'app_admin_users')]
+    #[Route('/admin/users', name: 'users')]
     public function showusers (HourRepository $hourRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -40,7 +40,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/newusers', name: 'app_admin_newusers')]
+    #[Route('/admin/newusers', name: 'newusers')]
     public function newUsers(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -71,7 +71,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-   #[Route('/admin/editusers/{id}', name: 'app_admin_editusers', methods: ['GET', 'POST'])]
+   #[Route('/admin/editusers/{id}', name: 'editusers', methods: ['GET', 'POST'])]
    public function editUsers(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
    {
         $hourFixtures = $hourRepository->find(33);
@@ -92,7 +92,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/deleteusers/{id}', name: 'app_admin_deleteusers', methods: ['GET'])]
+    #[Route('/admin/deleteusers/{id}', name: 'deleteusers', methods: ['GET'])]
     public function deleteUsers( EntityManagerInterface $entityManager, User $user): Response
     {
         $entityManager->remove($user);

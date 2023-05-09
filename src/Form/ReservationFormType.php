@@ -38,7 +38,7 @@ class ReservationFormType extends AbstractType
                 'html5' => false,
                 'label' => 'Sélectionner une date',
                 'attr' => [
-                    'class' => 'flatpickr-date'
+                    'class' => 'flatpickr-date',
                 ],
                 'format' => 'yyyy-MM-dd',
             ])

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DinnerMenuController extends AbstractController
 {
-    #[Route('/menudiner', name: 'app_dinner_menu')]
+    #[Route('/menudiner', name: 'menudiner')]
     public function getProductMenus(ProductMenuRepository $repository, MenuRepository $menuRepository, HourRepository $hourRepository): Response
     {
         $hourFixtures = $hourRepository->find(33);

@@ -29,7 +29,7 @@ class ReservationsController extends AbstractController
         $this->reservationRepository = $reservationRepository;
     }
 
-    #[Route('/admin/reservations', name: 'app_admin_reservations')]
+    #[Route('/admin/reservations', name: 'reservations')]
     public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -46,7 +46,7 @@ class ReservationsController extends AbstractController
 
         return $this->render('admin/reservations.html.twig', [
             'hourFixtures' => $hourFixtures,
-            'reservations' => $reservations
+            'reservations' => $reservations,
         ]);
     }
 
@@ -55,7 +55,7 @@ class ReservationsController extends AbstractController
         return 46 - $this->reservationRepository->findNumberPerson($dateReservation, $hourReservation);
     }
 
-    #[Route('/admin/newreservations', name: 'app_admin_newreservations', methods: ['GET', 'POST'])]
+    #[Route('/admin/newreservations', name: 'newreservations', methods: ['GET', 'POST'])]
     public function newReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -83,7 +83,7 @@ class ReservationsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/editreservations/{id}', name: 'app_admin_editreservations', methods: ['GET', 'POST'])]
+    #[Route('/admin/editreservations/{id}', name: 'editreservations', methods: ['GET', 'POST'])]
     public function editReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository, int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -104,7 +104,7 @@ class ReservationsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/deletereservations/{id}', name: 'app_admin_deletereservations', methods: ['GET'])]
+    #[Route('/admin/deletereservations/{id}', name: 'deletereservations', methods: ['GET'])]
     public function deleteMenus(Request $request, EntityManagerInterface $entityManager, Reservation $reservations): Response
     {
         $entityManager->remove($reservations);

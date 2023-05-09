@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HoursController extends AbstractController
 {
 
-    #[Route('/admin/hours', name: 'app_admin_hours')]
+    #[Route('/admin/hours', name: 'hours')]
     public function index (HourRepository $hourRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -35,7 +35,7 @@ class HoursController extends AbstractController
         ]);
     }
 
-     #[Route('/admin/newhours', name: 'app_admin_newhours', methods: ['GET', 'POST'])]
+     #[Route('/admin/newhours', name: 'newhours', methods: ['GET', 'POST'])]
      public function newHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager): Response
      {
          $hourFixtures = $hourRepository->find(33);
@@ -61,7 +61,7 @@ class HoursController extends AbstractController
          ]);
      }
 
-    #[Route('/admin/edithours/{id}', name: 'app_admin_edithours', methods: ['GET', 'POST'])]
+    #[Route('/admin/edithours/{id}', name: 'edithours', methods: ['GET', 'POST'])]
     public function editHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,int $id): Response
     {
         $hourFixtures = $hourRepository->find(33);
@@ -84,7 +84,7 @@ class HoursController extends AbstractController
 
     }
 
-    #[Route('/admin/deletehours/{id}', name: 'app_admin_deletehours', methods: ['GET'])]
+    #[Route('/admin/deletehours/{id}', name: 'deletehours', methods: ['GET'])]
     public function deleteMenus( EntityManagerInterface $entityManager, Hour $hours): Response
     {
         $entityManager->remove($hours);

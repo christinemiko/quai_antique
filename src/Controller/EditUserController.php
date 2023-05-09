@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class EditUserController extends AbstractController
 {
-    #[Route('/edituser', name: 'app_edituser')]
+    #[Route('/edituser', name: 'edituser')]
     public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository, UserRepository $userRepository): Response
      {
         $hourFixtures = $hourRepository->find(33);

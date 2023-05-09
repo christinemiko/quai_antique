@@ -33,7 +33,7 @@
 
      }
 
-     #[Route('histoire')]
+     #[Route('histoire',  name: 'histoire')]
      public function Histoire(HourRepository $repository,PictureRepository $pictureRepository) : Response
      {
          $hourFixtures = $repository->find(33);
@@ -47,7 +47,7 @@
      }
 
 
-     #[Route('accescontact')]
+     #[Route('accescontact', name: 'accescontact' )]
      public function Acces(HourRepository $repository) : Response
      {
          $hourFixtures = $repository->find(33);
@@ -56,19 +56,19 @@
              ]);
      }
 
-     #[Route('instagram')]
+     #[Route('instagram', name: 'instagram')]
      public function Instagram() : Response
      {
          return $this->redirect("https://www.instagram.com/polpobrasserie/");
      }
 
-     #[Route('facebook')]
+     #[Route('facebook', name: 'facebook')]
      public function Facebook() : Response
      {
          return $this->redirect("https://www.facebook.com/PolpoBrasserie/?fref=ts");
      }
 
-     #[Route('askreservation')]
+     #[Route('askreservation', name: 'askreservation')]
      public function AskReservation(HourRepository $repository) : Response
      {
          $hourFixtures = $repository->find(33);
