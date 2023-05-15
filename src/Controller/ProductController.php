@@ -13,14 +13,14 @@ class ProductController extends AbstractController
     #[Route('/alacarte', name: 'alacarte')]
     public function index(ProductRepository $repository, HourRepository $hourRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
-        $productsFixtures = $repository->findBy(['category' => '238']);
-        $productsFixtures2 = $repository->findBy(['category' => '239']);
-        $productsFixtures3 = $repository->findBy(['category' => '240']);
-        $productsFixtures4 = $repository->findBy(['category' => '241']);
-        $productsFixtures5 = $repository->findBy(['category' => '242']);
-        $productsFixtures6 = $repository->findBy(['category' => '243']);
-        $productsFixtures7 = $repository->findBy(['category' => '244']);
+        $hourFixtures = $hourRepository->findOneBy([]);
+        $productsFixtures = $repository->findBy(['category' => '1']);
+        $productsFixtures2 = $repository->findBy(['category' => '2']);
+        $productsFixtures3 = $repository->findBy(['category' => '3']);
+        $productsFixtures4 = $repository->findBy(['category' => '4']);
+        $productsFixtures5 = $repository->findBy(['category' => '5']);
+        $productsFixtures6 = $repository->findBy(['category' => '6']);
+        $productsFixtures7 = $repository->findBy(['category' => '7']);
 
         return $this->render('cardmenu.html.twig', [
             'hourFixtures' => $hourFixtures,

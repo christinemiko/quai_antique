@@ -19,7 +19,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(HourRepository $hourRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         return $this->render('admin/index.html.twig', [
             'hourFixtures' => $hourFixtures,
@@ -29,7 +29,7 @@ class AdminController extends AbstractController
     #[Route('/admin/administrators', name: 'administrators')]
     public function findByRole(HourRepository $hourRepository, UserRepository $userRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $users = $userRepository->findByRole('ROLE_ADMIN');
 
         return $this->render('admin/administrators.html.twig', [
@@ -42,7 +42,7 @@ class AdminController extends AbstractController
     #[Route('/admin/newadministrators', name: 'newadministrators')]
     public function newAdministrators(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $users = new User();
         $form = $this->createForm(NewAdministratorsFormType::class, $users);
@@ -74,7 +74,7 @@ class AdminController extends AbstractController
     #[Route('/admin/editadministrators/{id}', name: 'editadministrators', methods: ['GET', 'POST'])]
     public function editAdministrators(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $users = $userRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(EditAdministratorsFormType::class, $users);

@@ -26,9 +26,9 @@ class MenusController extends AbstractController
     #[Route('/admin/menus', name: 'menus')]
     public function getProductMenus(ProductMenuRepository $repository, MenuRepository $menuRepository, HourRepository $hourRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
-        $menu = $menuRepository->find(62);
+        $menu = $menuRepository->findOneBy(['nameMenu' => 'Menu Déjeuner_Aurore']);
         //dump($menu->getProductMenus());
 
         $productMenus = $repository->findBy([],['menu' => 'ASC']);
@@ -53,7 +53,7 @@ class MenusController extends AbstractController
     public function newProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductMenuRepository $productMenuRepository) : Response
 
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $productMenus = new productMenu ();
 
         $form = $this->createForm(ProductMenusFormType::class, $productMenus);
@@ -78,9 +78,9 @@ class MenusController extends AbstractController
     #[Route('/admin/editproductmenus/{id}', name: 'editproductmenus', methods: ['GET', 'POST'])]
     public function editProductMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,ProductMenuRepository $repository, int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
-        $menu = $menuRepository->find(62);
+        $menu = $menuRepository->findOneBy(['nameMenu' => 'Menu Déjeuner_Aurore']);
         dump($menu->getProductMenus());
 
         $productMenus = $repository->findOneBy(["id" => $id]);
@@ -112,7 +112,7 @@ class MenusController extends AbstractController
     #[Route('/admin/createmenus', name: 'createmenus')]
     public function index (HourRepository $hourRepository, MenuRepository $menuRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $menus = $paginator->paginate(
             $menuRepository->findAll(),
@@ -130,7 +130,7 @@ class MenusController extends AbstractController
    #[Route('/admin/newmenus', name: 'newmenus', methods: ['GET', 'POST'])]
    public function newMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, MenuRepository $menuRepository):Response
    {
-       $hourFixtures = $hourRepository->find(33);
+       $hourFixtures = $hourRepository->findOneBy([]);
        $menus = new Menu ();
 
        $form = $this->createForm(MenusFormType::class, $menus);
@@ -154,7 +154,7 @@ class MenusController extends AbstractController
      #[Route('/admin/editmenus/{id}', name: 'editmenus', methods: ['GET', 'POST'])]
      public function editMenus(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,MenuRepository $menuRepository,int $id): Response
      {
-         $hourFixtures = $hourRepository->find(33);
+         $hourFixtures = $hourRepository->findOneBy([]);
 
          $menus = $menuRepository->findOneBy(["id" => $id]);
          $form = $this->createForm(MenusFormType::class, $menus);

@@ -20,8 +20,11 @@ class Picture
     private ?string $link = null;
 
     #[ORM\ManyToOne(inversedBy: 'picture')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Product $product = null;
+
+    #[ORM\Column(type:"string",length: 55)]
+    private ?string $statut = null;
 
 
     public function getId(): ?int
@@ -65,6 +68,17 @@ class Picture
         return $this;
     }
 
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
 
 
 

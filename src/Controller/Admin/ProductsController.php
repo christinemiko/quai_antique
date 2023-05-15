@@ -22,7 +22,7 @@ class ProductsController extends AbstractController
     #[Route('/admin/products', name: 'products')]
     public function getProducts (ProductRepository $productRepository,HourRepository $hourRepository, CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $productsFixtures = $productRepository->findBy([],['category' => 'ASC']);
 
@@ -45,7 +45,7 @@ class ProductsController extends AbstractController
     public function new(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator) : Response
 
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $product = new product ();
         $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
@@ -67,7 +67,7 @@ class ProductsController extends AbstractController
     #[Route('/admin/editproducts/{id}', name: 'editproducts', methods: ['GET', 'POST'])]
     public function edit(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository, int $id): response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $product = $productRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(ProductFormType::class, $product);

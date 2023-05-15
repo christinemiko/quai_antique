@@ -38,7 +38,7 @@ class ReservationController extends AbstractController
     {
         $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
 
-        $hourFixtures = $repository->find(33);
+        $hourFixtures = $repository->findOneBy([]);
         $reservation = new Reservation();
 
         $user = $this->getUser();
@@ -77,7 +77,7 @@ class ReservationController extends AbstractController
     #[Route('confirmreservation', name: 'app_confirmreservation')]
     public function confirmreservation( HourRepository $hourRepository) : Response
     {
-        $hourFixtures =  $hourRepository->find(33);
+        $hourFixtures =  $hourRepository->findOneBy([]);
 
         return $this->render('confirmreservation.html.twig', [
             'hourFixtures' => $hourFixtures,

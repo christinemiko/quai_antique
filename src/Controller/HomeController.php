@@ -14,21 +14,24 @@
      #[Route('/', 'accueil')]
      public function Accueil(HourRepository $repository, PictureRepository $pictureRepository) : Response
      {
-         $hourFixtures = $repository->find(33);
-         $picture = $pictureRepository->find(19);
+         $hourFixtures = $repository->findOneBy([]);
+
+         $onlinePictures = $pictureRepository->findBy(['statut' => 'online']);
+        // $picture = $pictureRepository->findOneBy(['namePicture' => 'plat2.jpg']);
          //dump( $picture->getProduct());
 
-         $picture2 = $pictureRepository->find(20);
+         //$picture2 = $pictureRepository->findOneBy(['namePicture' => 'plat8.jpg']);
          //dump( $picture2->getProduct());
 
-         $picture3 = $pictureRepository->find(21);
+         //$picture3 = $pictureRepository->findOneBy(['namePicture' => 'plat14.jpg']);
          //dump( $picture3->getProduct());
 
          return $this->render( 'homepage.html.twig', [
              'hourFixtures' => $hourFixtures,
-             'picture' => $picture,
-             'picture2' => $picture2,
-             'picture3' => $picture3,
+             'onlinePictures' => $onlinePictures,
+             //'picture' => $picture,
+             //'picture2' => $picture2,
+             //'picture3' => $picture3,
          ]);
 
      }
@@ -36,8 +39,8 @@
      #[Route('histoire',  name: 'histoire')]
      public function Histoire(HourRepository $repository,PictureRepository $pictureRepository) : Response
      {
-         $hourFixtures = $repository->find(33);
-         $picture = $pictureRepository->find(22);
+         $hourFixtures = $repository->findOneBy([]);
+         $picture = $pictureRepository->findOneBy(['namePicture' => 'plat9.jpg']);
          //dump( $picture->getProduct());
 
          return $this->render('history.html.twig', [
@@ -50,7 +53,7 @@
      #[Route('accescontact', name: 'accescontact' )]
      public function Acces(HourRepository $repository) : Response
      {
-         $hourFixtures = $repository->find(33);
+         $hourFixtures = $repository->findOneBy([]);
          return $this->render('acces.html.twig',[
          'hourFixtures' => $hourFixtures
              ]);
@@ -71,7 +74,7 @@
      #[Route('askreservation', name: 'askreservation')]
      public function AskReservation(HourRepository $repository) : Response
      {
-         $hourFixtures = $repository->find(33);
+         $hourFixtures = $repository->findOneBy([]);
          return $this->render('askreservation.html.twig',[
              'hourFixtures' => $hourFixtures
          ]);

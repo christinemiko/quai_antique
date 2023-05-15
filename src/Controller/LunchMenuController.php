@@ -14,13 +14,13 @@ class LunchMenuController extends AbstractController
     #[Route('/menudéjeuner', name: 'menudéjeuner')]
     public function getProductMenus(ProductMenuRepository $repository, MenuRepository $menuRepository, HourRepository $hourRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
-        $menu = $menuRepository->find(62);
+        $hourFixtures = $hourRepository->findOneBy([]);
+        $menu = $menuRepository->findOneBy(['nameMenu' => 'Menu Déjeuner_Aurore']);
         //dump($menu->getProductMenus());
 
-        $productMenus = $repository->findBy(['menu'=> '62', 'category' => '238']);
-        $productMenus1 = $repository->findBy(['menu'=> '62', 'category' => '239']);
-        $productMenus2 = $repository->findBy(['menu'=> '62', 'category' => '242']);
+        $productMenus = $repository->findBy(['menu'=> '1', 'category' => '1']);
+        $productMenus1 = $repository->findBy(['menu'=> '1', 'category' => '2']);
+        $productMenus2 = $repository->findBy(['menu'=> '1', 'category' => '5']);
 
         $productMenuTest = $productMenus[0];
         //dump($productMenuTest->getProduct()->getCategory()->getNameCategory());

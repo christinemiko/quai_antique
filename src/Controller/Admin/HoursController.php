@@ -21,7 +21,7 @@ class HoursController extends AbstractController
     #[Route('/admin/hours', name: 'hours')]
     public function index (HourRepository $hourRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
 
         $hours = $paginator->paginate(
@@ -38,7 +38,7 @@ class HoursController extends AbstractController
      #[Route('/admin/newhours', name: 'newhours', methods: ['GET', 'POST'])]
      public function newHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager): Response
      {
-         $hourFixtures = $hourRepository->find(33);
+         $hourFixtures = $hourRepository->findOneBy([]);
 
          $hours = new Hour ();
 
@@ -64,7 +64,7 @@ class HoursController extends AbstractController
     #[Route('/admin/edithours/{id}', name: 'edithours', methods: ['GET', 'POST'])]
     public function editHours(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $hours = $hourRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(HoursFormType::class, $hours);

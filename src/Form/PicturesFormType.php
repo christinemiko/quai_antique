@@ -19,6 +19,7 @@ class PicturesFormType extends AbstractType
     {
         $builder
             ->add('namePicture', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Nom Image : '])
+            ->add('statut', TextType::class, [ 'attr' => [ 'class' => 'form-control'], 'label' => 'Statut : '])
             ->add('link', FileType::class,[
                 'label' => 'Image : ',
                 'mapped' => false,
@@ -44,6 +45,7 @@ class PicturesFormType extends AbstractType
                     },
                 'label' => 'Référence  : '
             ])
+
         ;
 
 

@@ -29,7 +29,7 @@ class PicturesController extends AbstractController
     #[Route('/admin/pictures', name: 'pictures')]
     public function showpictures (HourRepository $hourRepository, PictureRepository $pictureRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $pictures = $pictureRepository->findAll();
 
@@ -52,7 +52,7 @@ class PicturesController extends AbstractController
     public function newPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,
                                 PictureRepository $pictureRepository, SluggerInterface $slugger):Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $pictures = new Picture ();
 
@@ -102,7 +102,7 @@ class PicturesController extends AbstractController
     public function editPictures(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,
          SluggerInterface $slugger,PictureRepository $pictureRepository, int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $pictures = $pictureRepository->findOneBy(["id" => $id]);
 
         $form = $this->createForm(PicturesFormType::class,$pictures);

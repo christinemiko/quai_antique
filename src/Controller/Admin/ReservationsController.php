@@ -32,7 +32,7 @@ class ReservationsController extends AbstractController
     #[Route('/admin/reservations', name: 'reservations')]
     public function showreservation(HourRepository $hourRepository, ReservationRepository $reservationRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $reservations = $reservationRepository->findBy([], ['dateReservation' => 'ASC']);
 
         $reservationsTest = $reservations[0];
@@ -60,7 +60,7 @@ class ReservationsController extends AbstractController
     {
 
         $availablePlace = $this->getAvailablePlace(date('Y-m-d'), '12:00:00');
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $reservations = new Reservation ();
 
         $form = $this->createForm(ReservationsFormType::class, $reservations);
@@ -86,7 +86,7 @@ class ReservationsController extends AbstractController
     #[Route('/admin/editreservations/{id}', name: 'editreservations', methods: ['GET', 'POST'])]
     public function editReservations(HourRepository $hourRepository, Request $request, EntityManagerInterface $entityManager, ReservationRepository $reservationRepository, int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $reservations = $reservationRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(ReservationsFormType::class, $reservations);

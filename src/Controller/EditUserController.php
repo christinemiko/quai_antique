@@ -19,7 +19,7 @@ class EditUserController extends AbstractController
     #[Route('/edituser', name: 'edituser')]
     public function register(Request $request, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager, HourRepository $hourRepository, UserRepository $userRepository): Response
      {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $user = $this->getUser();
 

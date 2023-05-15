@@ -15,16 +15,16 @@ class UserController extends AbstractController
     #[Route('/user', name: 'app_user', methods: ['GET'])]
     public function index( HourRepository $hourRepository, PictureRepository $pictureRepository,): Response
     {
-        $hourFixtures = $hourRepository->find(33);
-        $picture = $pictureRepository->find(19);
+        $hourFixtures = $hourRepository->findOneBy([]);
+
+        $picture = $pictureRepository->findOneBy(['namePicture' => 'plat2.jpg']);
         //dump( $picture->getProduct());
 
-        $picture2 = $pictureRepository->find(20);
+        $picture2 = $pictureRepository->findOneBy(['namePicture' => 'plat8.jpg']);
         //dump( $picture2->getProduct());
 
-        $picture3 = $pictureRepository->find(21);
+        $picture3 = $pictureRepository->findOneBy(['namePicture' => 'plat14.jpg']);
         //dump( $picture3->getProduct());
-
 
         return $this->render('homepage.html.twig', [
             'hourFixtures' => $hourFixtures,
@@ -37,7 +37,7 @@ class UserController extends AbstractController
     #[Route('/moncompte', name: 'moncompte')]
     public function myAccount(HourRepository $repository) : Response
     {
-        $hourFixtures = $repository->find(33);
+        $hourFixtures = $repository->findOneBy([]);
         return $this->render('moncompte.html.twig',[
             'hourFixtures' => $hourFixtures
         ]);
@@ -46,7 +46,7 @@ class UserController extends AbstractController
     #[Route('confirmdeletemoncompte', name: 'confirmdeletemoncompte' )]
     public function confirm ( UserRepository $userRepository,HourRepository $hourRepository) : Response
     {
-        $hourFixtures =  $hourRepository->find(33);
+        $hourFixtures =  $hourRepository->findOneBy([]);
         return $this->render('deletemoncompte.html.twig', [
             'hourFixtures' => $hourFixtures
         ]);

@@ -21,7 +21,7 @@ class CategoriesController extends AbstractController
     #[Route('/admin/categories', name: 'categories')]
     public function index (HourRepository $hourRepository, CategoryRepository $categoryRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $categorys = $paginator->paginate(
             $categoryRepository->findAll(),
@@ -38,7 +38,7 @@ class CategoriesController extends AbstractController
     #[Route('/admin/newcategories', name: 'newcategories', methods: ['GET', 'POST'])]
     public function newCategories(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $categories = new Category ();
 
@@ -64,7 +64,7 @@ class CategoriesController extends AbstractController
     #[Route('/admin/editcategories/{id}', name: 'editcategories', methods: ['GET', 'POST'])]
     public function editCategories(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager,CategoryRepository $categoryRepository, int $id): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
         $categories = $categoryRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(CategoriesFormType::class, $categories);

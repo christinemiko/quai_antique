@@ -24,7 +24,7 @@ class UsersController extends AbstractController
     #[Route('/admin/users', name: 'users')]
     public function showusers (HourRepository $hourRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
 
         $users = $paginator->paginate(
@@ -43,7 +43,7 @@ class UsersController extends AbstractController
     #[Route('/admin/newusers', name: 'newusers')]
     public function newUsers(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, HourRepository $hourRepository): Response
     {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
         $users = new User();
         $form = $this->createForm(NewUserFormType::class, $users);
         $form->handleRequest($request);
@@ -74,7 +74,7 @@ class UsersController extends AbstractController
    #[Route('/admin/editusers/{id}', name: 'editusers', methods: ['GET', 'POST'])]
    public function editUsers(HourRepository $hourRepository,Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, User $user, int $id): Response
    {
-        $hourFixtures = $hourRepository->find(33);
+        $hourFixtures = $hourRepository->findOneBy([]);
 
     $users = $userRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(EditUserFormType::class, $users);

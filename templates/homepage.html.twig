@@ -15,29 +15,16 @@
          <!-- PICTURES CARD START -->
          <div class="row justify-content-center mb-4">
 
-                    <div class="card" style="width: 60rem;">
+             {% for picture in onlinePictures %}
+                    <div class="card mb-4" style="width: 60rem;">
                          <img src="{{ asset('uploads/' ~ picture.link()) }}" class="card-img-top" alt="Plat">
                          <div class="card-body">
                          <p class="card-text text-center">{{ picture.product.nameProduct }}</p>
                          </div>
                     </div>
+             {% endfor %}
          </div>
-         <div class="row justify-content-center mb-4">
-                    <div class="card" style="width: 60rem;">
-                         <img src="{{ asset('uploads/' ~ picture2.link()) }}" class="card-img-top" alt="Plat">
-                         <div class="card-body">
-                         <p class="card-text text-center">{{ picture2.product.nameProduct }}</p>
-                         </div>
-                    </div>
-         </div>
-         <div class="row justify-content-center mb-4">
-                    <div class="card text-center" style="width: 60rem;">
-                         <img src="{{ asset('uploads/' ~ picture3.link()) }}" class="card-img-top" alt="Plat">
-                         <div class="card-body">
-                         <p class="card-text text-center">{{ picture3.product.nameProduct }}</p>
-                         </div>
-                     </div>
-         </div>
+
 
                  {% if app.user %}
                      <!-- BUTTON RESERVATION START -->
