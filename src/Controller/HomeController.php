@@ -17,21 +17,11 @@
          $hourFixtures = $repository->findOneBy([]);
 
          $onlinePictures = $pictureRepository->findBy(['statut' => 'online']);
-        // $picture = $pictureRepository->findOneBy(['namePicture' => 'plat2.jpg']);
-         //dump( $picture->getProduct());
-
-         //$picture2 = $pictureRepository->findOneBy(['namePicture' => 'plat8.jpg']);
-         //dump( $picture2->getProduct());
-
-         //$picture3 = $pictureRepository->findOneBy(['namePicture' => 'plat14.jpg']);
-         //dump( $picture3->getProduct());
 
          return $this->render( 'homepage.html.twig', [
              'hourFixtures' => $hourFixtures,
              'onlinePictures' => $onlinePictures,
-             //'picture' => $picture,
-             //'picture2' => $picture2,
-             //'picture3' => $picture3,
+
          ]);
 
      }
@@ -40,12 +30,10 @@
      public function Histoire(HourRepository $repository,PictureRepository $pictureRepository) : Response
      {
          $hourFixtures = $repository->findOneBy([]);
-         $picture = $pictureRepository->findOneBy(['namePicture' => 'plat9.jpg']);
-         //dump( $picture->getProduct());
 
          return $this->render('history.html.twig', [
              'hourFixtures' => $hourFixtures,
-             'picture' => $picture,
+
          ]);
      }
 
